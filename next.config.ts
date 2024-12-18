@@ -2,7 +2,12 @@ import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    disableStaticImages: true,
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
 };
 
 // Wrap the async initialization in an IIFE

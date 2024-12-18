@@ -12,6 +12,14 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      width: {
+        'badge-sm': '82.6px',
+        'badge-md': '118.25px',
+      },
+      height: {
+        'badge-sm': '30.1px',
+        'badge-md': '43px',
+      },
     },
   },
   plugins: [],

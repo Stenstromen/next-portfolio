@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
   const cspHeader = `
     default-src 'self';
     connect-src 'self' https://keys.openpgp.org https://google-analytics.com https://*.google-analytics.com;
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' connect-src 'self' https://keys.openpgp.org https://google-analytics.com https://*.google-analytics.com;;
+    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
     style-src 'self' 'nonce-${nonce}';
     style-src-attr 'self' 'nonce-${nonce}';
     img-src 'self' blob: data: nonce-${nonce};

@@ -41,31 +41,27 @@ body {
 @keyframes fadeInLeft {
   from {
     opacity: 0;
-    transform: translateX(-100px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
   }
 }
 
 @keyframes fadeInRight {
   from {
     opacity: 0;
-    transform: translateX(100px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
   }
 }
 
 .fade-in-left {
-  animation: fadeInLeft 0.1s ease-out forwards;
+  animation: fadeInLeft 1s ease-out forwards;
 }
 
 .fade-in-right {
-  animation: fadeInRight 0.1s ease-out forwards;
+  animation: fadeInRight 2s ease-out forwards;
 }
 
 @media (max-width: 425px) {
