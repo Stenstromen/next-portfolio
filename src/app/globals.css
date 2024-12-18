@@ -19,3 +19,62 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.HomeH1 {
+  color: #d8e2dc;
+  padding-left: 5%;
+  padding-top: 3%;
+  font-size: 70px;
+}
+
+.HomeH2 {
+  color: #d8e2dc;
+  padding-left: 5%;
+  font-size: 35px;
+}
+
+.HomeH3 {
+  padding-left: 5%;
+  color: #d8e2dc;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-left {
+  animation: fadeInLeft 0.1s ease-out forwards;
+}
+
+.fade-in-right {
+  animation: fadeInRight 0.1s ease-out forwards;
+}
+
+@media (max-width: 425px) {
+  .HomeH1 {
+    padding-top: 15%;
+    font-size: 40px;
+  }
+
+  .HomeH2 {
+    font-size: 22px;
+  }
+}
