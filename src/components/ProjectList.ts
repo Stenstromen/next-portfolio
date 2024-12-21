@@ -57,7 +57,21 @@ const {
   WORDPRESS,
 } = BadgesList;
 
-const ProjectList = [
+export interface Project {
+  image: string | { src: string };
+  title: string;
+  description: string;
+  link: string;
+  github?: string;
+  badges: Array<{
+    name: string;
+    src: string;
+    width?: string;
+    height?: string;
+  }>;
+}
+
+const ProjectList: Project[] = [
   {
     image: snapnote,
     title: "Snapnote",
