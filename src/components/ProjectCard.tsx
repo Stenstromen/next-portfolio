@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import Badge from './Badge';
@@ -22,8 +23,6 @@ export default function ProjectCard({ image, title, description, link, github, b
     .replace('github.com/Stenstromen/', '')
     .replace(/apps\.apple\.com\/[^ ]+/g, 'View on Apple AppStore');
 
-  console.log(image);
-
   return (
     <div className="group relative bg-[#2d3142] rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       <div className="aspect-square w-full overflow-hidden rounded-lg mb-4">
@@ -31,6 +30,8 @@ export default function ProjectCard({ image, title, description, link, github, b
           <img
             src={typeof image === 'string' ? image : image.src}
             alt={title}
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             width={400}
             height={400}
