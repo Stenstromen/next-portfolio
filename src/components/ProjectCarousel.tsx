@@ -69,23 +69,23 @@ export default function ProjectCarousel({ projects, itemsPerRow = 4, rows = 2, n
   });
 
   return (
-    <div className="relative w-full px-4">
+    <div className="relative w-full">
       <button
         onClick={prevPage}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#2d3142]/80 text-white rounded-r-lg hover:bg-[#2d3142] transition-colors"
+        className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#2d3142]/80 text-white rounded-r-lg hover:bg-[#2d3142] transition-colors"
         aria-label="Previous page"
       >
         ←
       </button>
       <button
         onClick={nextPage}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#2d3142]/80 text-white rounded-l-lg hover:bg-[#2d3142] transition-colors"
+        className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#2d3142]/80 text-white rounded-l-lg hover:bg-[#2d3142] transition-colors"
         aria-label="Next page"
       >
         →
       </button>
 
-      <div className="overflow-hidden">
+      <div className="overflow-hidden clip">
         <div 
           className="flex transition-transform duration-500 ease-in-out"
           style={inlineStyle}
@@ -97,7 +97,7 @@ export default function ProjectCarousel({ projects, itemsPerRow = 4, rows = 2, n
           {pages.map((pageProjects, pageIndex) => (
             <div 
               key={pageIndex}
-              className="w-full flex-shrink-0"
+              className="w-full flex-shrink-0 px-4"
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {pageProjects.map((project, index) => (

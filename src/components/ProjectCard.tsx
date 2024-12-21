@@ -24,7 +24,7 @@ export default function ProjectCard({ image, title, description, link, github, b
     .replace(/apps\.apple\.com\/[^ ]+/g, 'View on Apple AppStore');
 
   return (
-    <div className="group relative bg-[#2d3142] rounded-lg p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col">
+    <div className="group relative bg-[#2d3142] rounded-lg p-3 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col">
       <div className="aspect-square w-full overflow-hidden rounded-lg mb-4">
         <a href={link} target="_blank" rel="noreferrer" className="block">
           <img
