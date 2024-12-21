@@ -1,6 +1,7 @@
 "use client";
 
 import BadgeGrid from "./BadgeGrid";
+import ScrollToTop from "./ScrollToTop";
 
 export const runtime = "edge";
 interface FirstPageProps {
@@ -9,7 +10,7 @@ interface FirstPageProps {
 
 export default function FirstPage({ nonce }: FirstPageProps) {
   return (
-    <div className="overflow-x-hidden bg-[#4f5d75] min-h-[150vh] sm:min-h-screen relative">
+    <div id="home" className="overflow-x-hidden bg-[#4f5d75] min-h-[150vh] sm:min-h-screen relative">
       <div className="fade-in-left z-10 relative">
         <h1 className="HomeH1">Hello!</h1>
         <h2 className="HomeH2">
@@ -20,6 +21,7 @@ export default function FirstPage({ nonce }: FirstPageProps) {
       <div className="absolute bottom-10 right-0">
         <BadgeGrid nonce={nonce} />
       </div>
+      <ScrollToTop />
     </div>
   );
 }

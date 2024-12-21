@@ -3,6 +3,7 @@
 import { useState, useCallback, TouchEvent, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 import type { Project } from './ProjectList';
+import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
 
 interface ProjectCarouselProps {
   projects: Project[];
@@ -69,20 +70,20 @@ export default function ProjectCarousel({ projects, itemsPerRow = 4, rows = 2, n
   });
 
   return (
-    <div className="relative w-full">
+    <div id="projects" className="relative w-full">
       <button
         onClick={prevPage}
-        className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#2d3142]/80 text-white rounded-r-lg hover:bg-[#2d3142] transition-colors"
+        className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-[#2d3142]/80 text-white rounded-lg hover:bg-[#2d3142] transition-colors w-8 h-40 flex items-center"
         aria-label="Previous page"
       >
-        ←
+        <IoChevronBackOutline className="w-10 h-10" />
       </button>
       <button
         onClick={nextPage}
-        className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-[#2d3142]/80 text-white rounded-l-lg hover:bg-[#2d3142] transition-colors"
+        className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-[#2d3142]/80 text-white rounded-lg hover:bg-[#2d3142] transition-colors w-8 h-40 flex items-center"
         aria-label="Next page"
       >
-        →
+        <IoChevronForwardOutline className="w-10 h-10" />
       </button>
 
       <div className="overflow-hidden clip">
@@ -109,7 +110,7 @@ export default function ProjectCarousel({ projects, itemsPerRow = 4, rows = 2, n
         </div>
       </div>
 
-      <div className="flex justify-center gap-2 mt-4">
+      <div className="flex justify-center gap-3 mt-4">
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}

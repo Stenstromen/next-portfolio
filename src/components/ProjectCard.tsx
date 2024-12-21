@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 
+import { FaGithub } from 'react-icons/fa';
 import Badge from './Badge';
 
 interface ProjectCardProps {
@@ -63,9 +64,9 @@ export default function ProjectCard({ image, title, description, link, github, b
             href={github}
             target="_blank"
             rel="noreferrer"
-            className="block text-sm text-white/70 hover:text-white transition-colors"
+            className="block text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
           >
-            View on GitHub
+            <FaGithub className="w-4 h-4" /> View on GitHub
           </a>
         )}
       </div>

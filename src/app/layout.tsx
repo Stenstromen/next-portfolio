@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from '@/components/Navbar'
+import Footer from "@/components/Footer";
 
 export const runtime = "edge";
 
@@ -39,6 +40,7 @@ export default async function RootLayout({
       >
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

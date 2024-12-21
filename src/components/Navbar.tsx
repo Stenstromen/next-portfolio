@@ -1,23 +1,23 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const pathname = usePathname();
-  let lastScrollY = 0;
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      if (currentScrollY > lastScrollY) {
+      if (currentScrollY > lastScrollY.current) {
         setIsScrollingDown(true);
       } else {
         setIsScrollingDown(false);
       }
-      lastScrollY = currentScrollY;
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -25,6 +25,11 @@ export default function Navbar() {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    if (pathname !== '/') {
+      window.location.href = `/${sectionId === 'home' ? '' : '#' + sectionId}`;
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
