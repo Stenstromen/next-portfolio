@@ -38,6 +38,10 @@ body {
   color: #d8e2dc;
 }
 
+.pink {
+  color: #f686bd;
+}
+
 @keyframes fadeInLeft {
   from {
     opacity: 0;

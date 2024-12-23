@@ -34,9 +34,8 @@ export default function ScrollToTop() {
       aria-label="Scroll to top"
     >
       <TbSquareArrowUpFilled
-        className="transition-none"
+        className="transition-none pink"
         size={55}
-        color="#f686bd"
       />
     </button>
   );

@@ -64,7 +64,7 @@ export default function ProjectCard({ image, title, description, link, github, b
             href={github}
             target="_blank"
             rel="noreferrer"
-            className="block text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
+            className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
           >
             <FaGithub className="w-4 h-4" /> View on GitHub
           </a>
