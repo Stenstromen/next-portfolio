@@ -7,7 +7,7 @@ export default async function ProjectsGrid() {
   
   return (
     <div className="w-full py-8 bg-[#445066]">
-      <div className="max-w-[95%] mx-auto">
+      <div className="w-full px-4 md:max-w-[95%] mx-auto">
         <ProjectCarousel 
           projects={ProjectList}
           itemsPerRow={4}

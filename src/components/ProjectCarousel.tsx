@@ -53,13 +53,19 @@ export default function ProjectCarousel({
 
   const handleTouchStart = (e: TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
+    // Prevent default to stop scrolling
+    e.preventDefault();
   };
 
   const handleTouchMove = (e: TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX);
+    // Prevent default to stop scrolling
+    e.preventDefault();
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (e: TouchEvent) => {
+    // Prevent default to stop scrolling
+    e.preventDefault();
     const swipeThreshold = 50;
     if (touchStart - touchEnd > swipeThreshold) {
       nextPage();
@@ -78,7 +84,7 @@ export default function ProjectCarousel({
     <div id="projects" className="relative w-full">
       <button
         onClick={prevPage}
-        className={`absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-8 h-40 flex items-center ${
+        className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-8 h-40 flex items-center ${
           currentPage === 0 ? "hidden" : ""
         }`}
         aria-label="Previous page"
@@ -87,7 +93,7 @@ export default function ProjectCarousel({
       </button>
       <button
         onClick={nextPage}
-        className={`absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-8 h-40 flex items-center ${
+        className={`absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-8 h-40 flex items-center ${
           currentPage === totalPages - 1 ? "hidden" : ""
         }`}
         aria-label="Next page"

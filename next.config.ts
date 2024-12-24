@@ -2,6 +2,7 @@ import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  compress: false,
   images: {
     disableStaticImages: false,
     dangerouslyAllowSVG: true,
