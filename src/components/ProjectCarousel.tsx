@@ -93,7 +93,7 @@ export default function ProjectCarousel({
   const visiblePages = getVisiblePages(currentPage);
 
   return (
-    <div id="projects" className="relative w-full">
+    <div id="projects" className="relative w-full max-w-full overflow-hidden">
       <button
         onClick={prevPage}
         className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-8 h-40 flex items-center ${
@@ -113,9 +113,9 @@ export default function ProjectCarousel({
         <IoChevronForwardOutline />
       </button>
 
-      <div className="overflow-hidden clip">
+      <div className="overflow-hidden">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex transition-transform duration-500 ease-in-out w-full"
           style={inlineStyle}
           nonce={nonce}
           onTouchStart={handleTouchStart}
@@ -123,9 +123,9 @@ export default function ProjectCarousel({
           onTouchEnd={handleTouchEnd}
         >
           {visiblePages.map((pageProjects, pageIndex) => (
-            <div key={pageIndex} className="w-full flex-shrink-0 px-4">
+            <div key={pageIndex} className="w-full flex-shrink-0">
               {pageProjects && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 sm:px-4">
                   {pageProjects.map((project, index) => (
                     <ProjectCard key={`${pageIndex}-${index}`} {...project} />
                   ))}
@@ -136,17 +136,17 @@ export default function ProjectCarousel({
         </div>
       </div>
 
-      <div className="flex justify-center gap-3 mt-4">
+      <div className="flex justify-center gap-1 sm:gap-3 mt-4">
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentPage(index)}
-            className={`w-4 h-4 p-4 rounded-full transition-colors flex items-center justify-center ${
+            className={`w-1.5 h-1.5 sm:w-4 sm:h-4 p-1 sm:p-4 rounded-full transition-colors flex items-center justify-center ${
               currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
             }`}
             aria-label={`Go to page ${index + 1}`}
           >
-            <span className={`w-2 h-2 rounded-full ${
+            <span className={`w-0.5 h-0.5 sm:w-2 sm:h-2 rounded-full ${
               currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
             }`} />
           </button>
