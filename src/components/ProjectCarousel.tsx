@@ -141,11 +141,15 @@ export default function ProjectCarousel({
           <button
             key={index}
             onClick={() => setCurrentPage(index)}
-            className={`w-2 h-2 rounded-full transition-colors ${
+            className={`w-4 h-4 p-4 rounded-full transition-colors flex items-center justify-center ${
               currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
             }`}
             aria-label={`Go to page ${index + 1}`}
-          />
+          >
+            <span className={`w-2 h-2 rounded-full ${
+              currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
+            }`} />
+          </button>
         ))}
       </div>
     </div>
