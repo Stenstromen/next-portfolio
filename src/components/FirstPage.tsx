@@ -1,7 +1,12 @@
 "use client";
 
-import BadgeGrid from "./BadgeGrid";
 import ScrollToTop from "./ScrollToTop";
+
+import dynamic from "next/dynamic";
+
+const BadgeGrid = dynamic(() => import("./BadgeGrid"), {
+  loading: () => <div className="w-full h-[600px] bg-[#445066] animate-pulse"></div>
+});
 
 export const runtime = "edge";
 interface FirstPageProps {
@@ -18,7 +23,7 @@ export default function FirstPage({ nonce }: FirstPageProps) {
         </h2>
         <h3 className="HomeH3"> - Based in Stockholm, Sweden.</h3>
       </div>
-      <div className="absolute bottom-10 right-0">
+      <div className="absolute bottom-10 right-2">
         <BadgeGrid nonce={nonce} />
       </div>
       <ScrollToTop />

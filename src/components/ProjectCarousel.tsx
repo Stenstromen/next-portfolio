@@ -75,10 +75,22 @@ export default function ProjectCarousel({
     }
   };
 
-  const pages = Array.from({ length: totalPages }).map((_, pageIndex) => {
-    const startIndex = pageIndex * itemsPerPage;
-    return projects.slice(startIndex, startIndex + itemsPerPage);
-  });
+  const getVisiblePages = useCallback((currentPageIndex: number) => {
+    const pagesToShow = new Set([
+      currentPageIndex - 1,
+      currentPageIndex,
+      currentPageIndex + 1,
+    ]);
+    
+    return Array.from({ length: totalPages }).map((_, pageIndex) => {
+      if (!pagesToShow.has(pageIndex)) return null;
+      
+      const startIndex = pageIndex * itemsPerPage;
+      return projects.slice(startIndex, startIndex + itemsPerPage);
+    });
+  }, [itemsPerPage, totalPages, projects]);
+
+  const visiblePages = getVisiblePages(currentPage);
 
   return (
     <div id="projects" className="relative w-full">
@@ -110,13 +122,15 @@ export default function ProjectCarousel({
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {pages.map((pageProjects, pageIndex) => (
+          {visiblePages.map((pageProjects, pageIndex) => (
             <div key={pageIndex} className="w-full flex-shrink-0 px-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {pageProjects.map((project, index) => (
-                  <ProjectCard key={`${pageIndex}-${index}`} {...project} />
-                ))}
-              </div>
+              {pageProjects && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {pageProjects.map((project, index) => (
+                    <ProjectCard key={`${pageIndex}-${index}`} {...project} />
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
