@@ -1,8 +1,8 @@
+import dns from "../img/dns.webp";
 import FlareIP from "../img/flareip.svg";
 import FlareGHStats from "../img/flareghstats.webp";
 import bf2042ico from "../img/bf2042ico.webp";
 import bright from "../img/bright.webp";
-// import cavestory from "../img/cavestory.webp";
 import detblevingencd from "../img/detblevingencd.webp";
 import dockerctx from "../img/dockerctx.webp";
 import doggate from "../img/doggate.webp";
@@ -17,7 +17,6 @@ import khaossweeper from "../img/khaossweeper.webp";
 import kubectlpvcmount from "../img/kubectl-pvcmount.webp";
 import miniomatic from "../img/miniomatic.svg";
 import ncregistry from "../img/ncregistry.webp";
-// import noclip from "../img/noclip.webp";
 import non from "../img/non.webp";
 import nyancatchat from "../img/nyancatchat.webp";
 import nyancat from "../img/nyancat.webp";
@@ -72,6 +71,14 @@ export interface Project {
 }
 
 const ProjectList: Project[] = [
+  {
+    image: dns,
+    title: "AXFR.se",
+    description: "AXFR.se, view .se, .nu and other TLD statistics.",
+    link: "https://axfr.se",
+    github: "https://github.com/Stenstromen/axfr-frontend",
+    badges: [REACTJS, JS, CLOUDFLARE, GO, MARIADB, KUBERNETES],
+  },
   {
     image: snapnote,
     title: "Snapnote",

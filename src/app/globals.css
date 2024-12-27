@@ -20,24 +20,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.HomeH1 {
-  color: #d8e2dc;
-  padding-left: 5%;
-  padding-top: 3%;
-  font-size: 70px;
-}
-
-.HomeH2 {
-  color: #d8e2dc;
-  padding-left: 5%;
-  font-size: 35px;
-}
-
-.HomeH3 {
-  padding-left: 5%;
-  color: #d8e2dc;
-}
-
 .pink {
   color: #f686bd;
 }
