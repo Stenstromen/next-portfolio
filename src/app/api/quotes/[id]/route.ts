@@ -1,13 +1,37 @@
 import { quotes } from '../data';
 import { NextResponse } from 'next/server';
 
-// GET /api/quotes/[id] - Returns a specific quote by index
+export const runtime = 'edge';
+
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: Request
 ) {
-  const id = parseInt(params.id);
-  const { searchParams } = new URL(request.url);
+  // Handle readme request
+  if (request.url.includes('/quotes/readme')) {
+    const readme = `Quotes API Usage:
+
+/api/quotes          - Get all quotes (JSON)
+/api/quotes/random   - Get a random quote (JSON)
+/api/quotes/{id}     - Get a specific quote by ID (JSON)
+
+Query Parameters:
+?quote   - Get only the quote text (plain text)
+?author  - Get only the author (plain text)
+?full    - Get "QUOTE - AUTHOR" format (plain text)
+
+Examples:
+/api/quotes/0        - Get first quote as JSON
+/api/quotes/0?quote  - Get first quote text only
+/api/quotes/0?author - Get first quote author only
+/api/quotes/0?full   - Get first quote in "QUOTE - AUTHOR" format`;
+
+    return new Response(readme, {
+      headers: { 'Content-Type': 'text/plain' }
+    });
+  }
+
+  const id = parseInt(request.url.split('/').pop()!);
+  const searchParams = new URL(request.url).searchParams;
 
   // Check if id is a valid number
   if (isNaN(id)) {
@@ -34,6 +58,12 @@ export async function GET(
 
   if (searchParams.has('author')) {
     return new Response(quotes[id].author, {
+      headers: { 'Content-Type': 'text/plain' }
+    });
+  }
+
+  if (searchParams.has('full')) {
+    return new Response(`${quotes[id].quote} - ${quotes[id].author}`, {
       headers: { 'Content-Type': 'text/plain' }
     });
   }
