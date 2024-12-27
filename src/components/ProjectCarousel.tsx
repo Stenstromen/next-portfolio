@@ -53,19 +53,20 @@ export default function ProjectCarousel({
 
   const handleTouchStart = (e: TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
-    // Prevent default to stop scrolling
-    e.preventDefault();
   };
 
   const handleTouchMove = (e: TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX);
-    // Prevent default to stop scrolling
-    e.preventDefault();
+    const deltaX = Math.abs(e.targetTouches[0].clientX - touchStart);
+    const deltaY = Math.abs(e.targetTouches[0].pageY - e.targetTouches[0].clientY);
+    
+    if (deltaX > deltaY) {
+      e.preventDefault();
+    }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleTouchEnd = (e: TouchEvent) => {
-    // Prevent default to stop scrolling
-    e.preventDefault();
     const swipeThreshold = 50;
     if (touchStart - touchEnd > swipeThreshold) {
       nextPage();
@@ -96,21 +97,21 @@ export default function ProjectCarousel({
     <div id="projects" className="relative w-full max-w-full overflow-hidden">
       <button
         onClick={prevPage}
-        className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-8 h-40 flex items-center ${
+        className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 p-4 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-12 h-48 flex items-center justify-center ${
           currentPage === 0 ? "hidden" : ""
         }`}
         aria-label="Previous page"
       >
-        <IoChevronBackOutline />
+        <IoChevronBackOutline className="w-6 h-6" />
       </button>
       <button
         onClick={nextPage}
-        className={`absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-8 h-40 flex items-center ${
+        className={`absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-10 p-4 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-12 h-48 flex items-center justify-center ${
           currentPage === totalPages - 1 ? "hidden" : ""
         }`}
         aria-label="Next page"
       >
-        <IoChevronForwardOutline />
+        <IoChevronForwardOutline className="w-6 h-6" />
       </button>
 
       <div className="overflow-hidden">
@@ -141,12 +142,12 @@ export default function ProjectCarousel({
           <button
             key={index}
             onClick={() => setCurrentPage(index)}
-            className={`w-1.5 h-1.5 sm:w-4 sm:h-4 p-1 sm:p-4 rounded-full transition-colors flex items-center justify-center ${
+            className={`w-8 h-8 sm:w-4 sm:h-4 rounded-full transition-colors flex items-center justify-center ${
               currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
             }`}
             aria-label={`Go to page ${index + 1}`}
           >
-            <span className={`w-0.5 h-0.5 sm:w-2 sm:h-2 rounded-full ${
+            <span className={`w-2 h-2 sm:w-2 sm:h-2 rounded-full ${
               currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
             }`} />
           </button>

@@ -11,12 +11,18 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      if (currentScrollY > lastScrollY.current) {
+      const scrollDifference = currentScrollY - lastScrollY.current;
+      
+      // Don't hide navbar if we're at the top of the page
+      // or if the scroll difference is very small (for bounce effects)
+      if (currentScrollY < 10 || Math.abs(scrollDifference) < 5) {
+        setIsScrollingDown(false);
+      } else if (scrollDifference > 0) {
         setIsScrollingDown(true);
       } else {
         setIsScrollingDown(false);
       }
+      
       lastScrollY.current = currentScrollY;
     };
 

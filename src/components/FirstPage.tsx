@@ -20,7 +20,7 @@ export default function FirstPage({ nonce }: FirstPageProps) {
           <div className="fade-in-left z-10">
             <h1 className="text-[#d8e2dc] pl-[5%] pt-[3%] text-[70px]">Hello!</h1>
             <h2 className="text-[#d8e2dc] pl-[5%] text-[35px]">
-              I&apos;m Filip - DevOps Engineer and Hobbyist Programmer.
+              I&apos;m Filip.<br />DevOps by day, programmer by passion.
             </h2>
             <h3 className="text-[#d8e2dc] pl-[5%]">
               - Based in Stockholm, Sweden.
