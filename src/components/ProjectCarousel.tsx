@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, TouchEvent, useEffect } from "react";
+import { useState, useCallback, TouchEvent, useEffect, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import type { Project } from "./ProjectList";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
@@ -23,6 +23,8 @@ export default function ProjectCarousel({
   const [touchEnd, setTouchEnd] = useState<number>(0);
   const [isMobile, setIsMobile] = useState(false);
   const [inlineStyle, setInlineStyle] = useState<{ [key: string]: string }>({});
+  const [autoPlay, setAutoPlay] = useState(true);
+  const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 640);
@@ -44,10 +46,12 @@ export default function ProjectCarousel({
   const totalPages = Math.ceil(projects.length / itemsPerPage);
 
   const nextPage = useCallback(() => {
+    setAutoPlay(false);
     setCurrentPage((prev) => (prev + 1) % totalPages);
   }, [totalPages]);
 
   const prevPage = useCallback(() => {
+    setAutoPlay(false);
     setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
   }, [totalPages]);
 
@@ -69,11 +73,18 @@ export default function ProjectCarousel({
   const handleTouchEnd = (e: TouchEvent) => {
     const swipeThreshold = 50;
     if (touchStart - touchEnd > swipeThreshold) {
+      setAutoPlay(false);
       nextPage();
     }
     if (touchEnd - touchStart > swipeThreshold) {
+      setAutoPlay(false);
       prevPage();
     }
+  };
+
+  const handlePageClick = (index: number) => {
+    setAutoPlay(false);
+    setCurrentPage(index);
   };
 
   const getVisiblePages = useCallback((currentPageIndex: number) => {
@@ -92,6 +103,22 @@ export default function ProjectCarousel({
   }, [itemsPerPage, totalPages, projects]);
 
   const visiblePages = getVisiblePages(currentPage);
+
+  useEffect(() => {
+    if (!autoPlay) return;
+
+    const switchPage = () => {
+      setCurrentPage((prev) => (prev + 1) % totalPages);
+    };
+
+    autoPlayTimeoutRef.current = setTimeout(switchPage, 5000);
+
+    return () => {
+      if (autoPlayTimeoutRef.current) {
+        clearTimeout(autoPlayTimeoutRef.current);
+      }
+    };
+  }, [currentPage, totalPages, autoPlay]);
 
   return (
     <div id="projects" className="relative w-full max-w-full overflow-hidden">
@@ -116,7 +143,7 @@ export default function ProjectCarousel({
 
       <div className="overflow-hidden">
         <div
-          className="flex transition-transform duration-500 ease-in-out w-full"
+          className="flex transition-all duration-700 ease-in-out w-full"
           style={inlineStyle}
           nonce={nonce}
           onTouchStart={handleTouchStart}
@@ -141,7 +168,7 @@ export default function ProjectCarousel({
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentPage(index)}
+            onClick={() => handlePageClick(index)}
             className={`w-8 h-8 sm:w-4 sm:h-4 rounded-full transition-colors flex items-center justify-center ${
               currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
             }`}
