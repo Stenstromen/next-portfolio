@@ -33,6 +33,7 @@ import lynxgate from "../img/lynxgate.webp";
 import outlinewikibackup from "../img/outlinewikibackup.webp";
 import rustyalias from "../img/rustyalias.webp";
 import s3dbdump from "../img/s3dbdump.webp";
+import dane from "../img/dane.webp";
 import BadgesList from "./BadgesList";
 
 const {
@@ -125,7 +126,7 @@ const ProjectList: Project[] = [
     badges: [GO, DOCKER, KUBERNETES],
   },
   {
-    image: gologo,
+    image: dane,
     title: "GoTLSAFlare",
     description:
       "Go binary for updating TLSA DANE record on cloudflare from x509 Certificate.",
