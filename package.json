@@ -20,7 +20,7 @@
     "react-icons": "^5.4.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.7",
+    "@cloudflare/next-on-pages": "^1.13.9",
     "@cloudflare/workers-types": "^4.20241216.0",
     "@eslint/eslintrc": "^3",
     "@types/node": "^22",
