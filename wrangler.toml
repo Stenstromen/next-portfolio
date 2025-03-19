@@ -19,12 +19,12 @@ pages_build_output_dir = ".vercel/output/static"
 # [vars]
 # MY_VARIABLE = "production_value"
 
-# Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
+# Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare's global network
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#workers-ai
 # [ai]
 # binding = "AI"
 
-# Bind a D1 database. D1 is Cloudflare’s native serverless SQL database.
+# Bind a D1 database. D1 is Cloudflare's native serverless SQL database.
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#d1-databases
 # [[d1_databases]]
 # binding = "MY_DB"

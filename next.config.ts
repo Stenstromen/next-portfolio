@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  experimental: {
+    // Empty but correctly structured configuration
+  },
+  serverExternalPackages: [],
 };
 
 (async () => {
