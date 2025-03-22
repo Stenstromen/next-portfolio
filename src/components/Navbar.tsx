@@ -48,7 +48,7 @@ export default function Navbar() {
       ${isScrollingDown ? "-translate-y-full" : "translate-y-0"}`}
     >
       <div className="flex justify-center items-center h-10">
-        <div className="flex space-x-8">
+        <div className="flex space-x-3 sm:space-x-8">
           <button
             onClick={() => scrollToSection("home")}
             className="text-[#d8e2dc] hover:text-white transition-colors text-2xl"
@@ -57,6 +57,12 @@ export default function Navbar() {
           </button>
           {pathname === "/" && (
             <>
+              <button
+                onClick={() => scrollToSection("achievements")}
+                className="text-[#d8e2dc] hover:text-white transition-colors text-2xl"
+              >
+                Brag
+              </button>
               <button
                 onClick={() => scrollToSection("projects")}
                 className="text-[#d8e2dc] hover:text-white transition-colors text-2xl"

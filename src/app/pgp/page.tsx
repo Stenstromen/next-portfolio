@@ -36,7 +36,7 @@ export default function PGP() {
             <h1 className="text-2xl font-bold mb-4 text-black">
               info@stenstromen.se PGP Public Key
             </h1>
-            <pre className="bg-black p-4 rounded-lg overflow-x-auto mb-4 text-sm">
+            <pre className="bg-black p-4 rounded-lg overflow-x-auto mb-4 text-sm text-white">
               {pgp || 'Loading PGP key...'}
             </pre>
             <button
