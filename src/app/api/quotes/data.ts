@@ -211,5 +211,13 @@ export const quotes: Quote[] = [
   {
     quote: "Be yourself, everyone else is already taken",
     author: "Oscar Wilde"
-  }
+  },
+  {
+    quote: "The written warnings on a space heater (or really any product) should never be ignored, they were written in blood",
+    author: "Technology Connections (YouTube)"
+  },
+  {
+    quote: "You weren't unhappy until they told you you should be",
+    author: "Technology Connections (YouTube)"
+  },
 ]; 
