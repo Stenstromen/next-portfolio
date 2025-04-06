@@ -32,6 +32,7 @@ import lotemp from "../img/lotemp.webp";
 import lynxgate from "../img/lynxgate.webp";
 import outlinewikibackup from "../img/outlinewikibackup.webp";
 import rustyalias from "../img/rustyalias.webp";
+import rustex from "../img/rustex.webp";
 import s3dbdump from "../img/s3dbdump.webp";
 import dane from "../img/dane.webp";
 import BadgesList from "./BadgesList";
@@ -91,13 +92,13 @@ const ProjectList: Project[] = [
     badges: [REACTJS, TS, GO, MARIADB, KUBERNETES],
   },
   {
-    image:
-      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgNjAiPgogIDxwYXRoIGZpbGw9ImxpZ2h0Z3JheSIgZD0iTTEwIDEwIFEgMjAgMCwgMzAgMTAgVCA1MCAxMCBUIDcwIDEwIFQgOTAgMTAgUSAxMDAgMCwgMTEwIDEwIiAvPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iMzAiIHI9IjIwIiBmaWxsPSJsaWdodGJsdWUiIC8+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSIzMCIgcj0iMTAiIGZpbGw9IndoaXRlIiAvPgogIDxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0gNjAgNDAgUSA3MCA1MCwgODAgNDAgVCAxMDAgNDAiIC8+Cjwvc3ZnPgo=",
-    title: "Twaddle",
-    description: "Generate gibberish using the distilGP2 model.",
-    link: "https://twaddle.page",
-    github: "https://github.com/Stenstromen/twaddle-frontend",
-    badges: [REACTJS, TS, PYTHON, TENSORFLOW, KUBERNETES],
+    image: rustex,
+    title: "RustEx",
+    description:
+      "Rust application that monitors files for changes and sends them to a Discord webhook",
+    link: "https://github.com/Stenstromen/rustex",
+    github: "https://github.com/Stenstromen/rustex",
+    badges: [RUST],
   },
   {
     image: readthenburn,
@@ -414,6 +415,15 @@ const ProjectList: Project[] = [
     link: "https://apps.apple.com/us/app/registryport/id6464222587",
     github: "https://github.com/Stenstromen/registryport",
     badges: [REACTNATIVE, TS, DOCKER],
+  },
+  {
+    image:
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgNjAiPgogIDxwYXRoIGZpbGw9ImxpZ2h0Z3JheSIgZD0iTTEwIDEwIFEgMjAgMCwgMzAgMTAgVCA1MCAxMCBUIDcwIDEwIFQgOTAgMTAgUSAxMDAgMCwgMTEwIDEwIiAvPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iMzAiIHI9IjIwIiBmaWxsPSJsaWdodGJsdWUiIC8+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSIzMCIgcj0iMTAiIGZpbGw9IndoaXRlIiAvPgogIDxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0gNjAgNDAgUSA3MCA1MCwgODAgNDAgVCAxMDAgNDAiIC8+Cjwvc3ZnPgo=",
+    title: "Twaddle",
+    description: "Generate gibberish using the distilGP2 model.",
+    link: "https://twaddle.page",
+    github: "https://github.com/Stenstromen/twaddle-frontend",
+    badges: [REACTJS, TS, PYTHON, TENSORFLOW, KUBERNETES],
   },
 ];
 
