@@ -13,7 +13,7 @@
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
   },
   "dependencies": {
-    "@next/third-parties": "^15.1.2",
+    "@next/third-parties": "^15.2.4",
     "@tailwindcss/postcss": "^4.0.17",
     "next": "^15.1.7",
     "react": "^19.1.0",
