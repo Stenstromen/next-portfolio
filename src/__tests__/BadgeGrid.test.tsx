@@ -1,9 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { test, expect, vi } from "vitest";
 import BadgeGrid from "../components/BadgeGrid";
-import BadgesList from "../components/BadgesList";
+import BadgesList from "@/components/BadgesList";
 
-// Mock the Badge component since we don't need to test its internals here
 vi.mock("../components/Badge", () => ({
   default: function MockBadge({ name }: { name: string }) {
     return <div data-testid="mock-badge">{name}</div>;
@@ -12,7 +11,7 @@ vi.mock("../components/Badge", () => ({
 
 test("renders the grid container with correct styling", () => {
   render(<BadgeGrid />);
-  
+
   const gridContainer = screen.getByTestId("badge-grid");
   expect(gridContainer).toHaveClass("bg-[#f686bd]");
   expect(gridContainer).toHaveClass("p-6");
@@ -20,31 +19,41 @@ test("renders the grid container with correct styling", () => {
   expect(gridContainer).toHaveClass("shadow-lg");
 });
 
-test("renders all badges from BadgesList", () => {
+test("renders the ninja icon", () => {
   render(<BadgeGrid />);
-  
-  const badges = screen.getAllByTestId("mock-badge");
-  expect(badges).toHaveLength(Object.keys(BadgesList).length);
-  
-  // Verify that each badge name from BadgesList is rendered
-  Object.values(BadgesList).forEach((badge) => {
-    expect(screen.getByText(badge.name)).toBeInTheDocument();
-  });
+
+  const ninjaIcon = screen.getByTestId("ninja-icon");
+  expect(ninjaIcon).toBeInTheDocument();
 });
 
-test("applies correct grid layout classes", () => {
+test("renders twelve badges from BadgesList", () => {
   render(<BadgeGrid />);
-  
-  const grid = screen.getByTestId("badge-grid").firstElementChild;
-  expect(grid).toHaveClass("grid");
-  expect(grid).toHaveClass("grid-cols-2");
-  expect(grid).toHaveClass("sm:grid-cols-3");
-  expect(grid).toHaveClass("gap-2");
+
+  const badges = screen.getAllByTestId("mock-badge");
+  const initialBadges = [
+    "HTML",
+    "CSS",
+    "TS",
+    "REACTJS",
+    "GO",
+    "RUST",
+    "NODEJS",
+    "PYTHON",
+    "KUBERNETES",
+    "DOCKER",
+    "LINUX",
+    "GITHUBACTIONS",
+  ];
+  expect(badges).toHaveLength(12);
+
+  initialBadges.forEach((badge) => {
+    expect(screen.getByText(badge)).toBeInTheDocument();
+  });
 });
 
 test("renders badges with correct container styling", () => {
   render(<BadgeGrid />);
-  
+
   const badgeContainers = screen.getAllByTestId("mock-badge");
   badgeContainers.forEach((container) => {
     expect(container.parentElement).toHaveClass("flex");
@@ -56,9 +65,17 @@ test("renders badges with correct container styling", () => {
 test("passes nonce prop to Badge components", () => {
   const testNonce = "test-nonce";
   render(<BadgeGrid nonce={testNonce} />);
-  
-  // Since we mocked the Badge component, we can't directly test the nonce prop
-  // But we can verify that the correct number of badges are rendered
+
+  const badges = screen.getAllByTestId("mock-badge");
+  expect(badges).toHaveLength(12);
+});
+
+test("renders all badges when showAllBadges is true", () => {
+  render(<BadgeGrid />);
+
+  const showMoreButton = screen.getByTestId("show-more-badges");
+  fireEvent.click(showMoreButton);
+
   const badges = screen.getAllByTestId("mock-badge");
   expect(badges).toHaveLength(Object.keys(BadgesList).length);
 });
