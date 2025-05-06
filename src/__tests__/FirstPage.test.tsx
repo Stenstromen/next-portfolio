@@ -28,7 +28,8 @@ describe("FirstPage", () => {
 
     const heading = container.querySelector("h1");
     const subheading = container.querySelector("h2");
-    const location = container.querySelector("h3");
+    const location = container.querySelector("h5");
+    const tagline = container.querySelector("h4");
 
     expect(heading).toHaveTextContent("Hello!");
     expect(subheading).toHaveTextContent(/I'm Filip/);
@@ -36,6 +37,7 @@ describe("FirstPage", () => {
       /DevOps by day, Programmer by passion/
     );
     expect(location).toHaveTextContent(/Based in Stockholm, Sweden/);
+    expect(tagline).toHaveTextContent(/I move fast and break things/);
   });
 
   it("renders with correct background colors and layout", () => {
