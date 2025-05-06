@@ -24,6 +24,8 @@ export default function ProjectCarousel({
   const [isMobile, setIsMobile] = useState(false);
   const [inlineStyle, setInlineStyle] = useState<{ [key: string]: string }>({});
   const [autoPlay, setAutoPlay] = useState(true);
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
+  const [activeFilter, setActiveFilter] = useState("All");
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -43,7 +45,7 @@ export default function ProjectCarousel({
 
   const mobileItemsPerRow = 1;
   const itemsPerPage = isMobile ? mobileItemsPerRow * 2 : itemsPerRow * rows;
-  const totalPages = Math.ceil(projects.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
 
   const nextPage = useCallback(() => {
     setAutoPlay(false);
@@ -62,8 +64,10 @@ export default function ProjectCarousel({
   const handleTouchMove = (e: TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX);
     const deltaX = Math.abs(e.targetTouches[0].clientX - touchStart);
-    const deltaY = Math.abs(e.targetTouches[0].pageY - e.targetTouches[0].clientY);
-    
+    const deltaY = Math.abs(
+      e.targetTouches[0].pageY - e.targetTouches[0].clientY
+    );
+
     if (deltaX > deltaY) {
       e.preventDefault();
     }
@@ -87,20 +91,23 @@ export default function ProjectCarousel({
     setCurrentPage(index);
   };
 
-  const getVisiblePages = useCallback((currentPageIndex: number) => {
-    const pagesToShow = new Set([
-      currentPageIndex - 1,
-      currentPageIndex,
-      currentPageIndex + 1,
-    ]);
-    
-    return Array.from({ length: totalPages }).map((_, pageIndex) => {
-      if (!pagesToShow.has(pageIndex)) return null;
-      
-      const startIndex = pageIndex * itemsPerPage;
-      return projects.slice(startIndex, startIndex + itemsPerPage);
-    });
-  }, [itemsPerPage, totalPages, projects]);
+  const getVisiblePages = useCallback(
+    (currentPageIndex: number) => {
+      const pagesToShow = new Set([
+        currentPageIndex - 1,
+        currentPageIndex,
+        currentPageIndex + 1,
+      ]);
+
+      return Array.from({ length: totalPages }).map((_, pageIndex) => {
+        if (!pagesToShow.has(pageIndex)) return null;
+
+        const startIndex = pageIndex * itemsPerPage;
+        return filteredProjects.slice(startIndex, startIndex + itemsPerPage);
+      });
+    },
+    [itemsPerPage, totalPages, filteredProjects]
+  );
 
   const visiblePages = getVisiblePages(currentPage);
 
@@ -119,6 +126,31 @@ export default function ProjectCarousel({
       }
     };
   }, [currentPage, totalPages, autoPlay]);
+  const techFilters = ["All", "Go", "Rust", "React", "Kubernetes"];
+
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter);
+    setCurrentPage(0);
+
+    switch (filter) {
+      case "All":
+        setFilteredProjects(projects);
+        break;
+      case "React":
+        setFilteredProjects(
+          projects.filter((project) =>
+            project.badges.some((badge) => badge.name === "REACTJS")
+          )
+        );
+        break;
+      default:
+        setFilteredProjects(
+          projects.filter((project) =>
+            project.badges.some((badge) => badge.name === filter.toUpperCase())
+          )
+        );
+    }
+  };
 
   return (
     <div id="projects" className="relative w-full max-w-full overflow-hidden">
@@ -142,6 +174,24 @@ export default function ProjectCarousel({
       </button>
 
       <div className="overflow-hidden">
+        <div className="flex flex-col items-center mb-4">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-4">
+            {techFilters.map((filter, index) => (
+              <button
+                key={index}
+                onClick={() => handleFilterChange(filter)}
+                className={`px-2 py-1 sm:px-3 sm:py-1 text-sm sm:text-base rounded-lg transition-colors ${
+                  activeFilter === filter
+                    ? "bg-[#f686bd] text-white"
+                    : "bg-[#d8e2dc]/30 text-white hover:bg-[#d8e2dc]/50"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div
           className="flex transition-all duration-700 ease-in-out w-full"
           style={inlineStyle}
@@ -174,9 +224,11 @@ export default function ProjectCarousel({
             }`}
             aria-label={`Go to page ${index + 1}`}
           >
-            <span className={`w-2 h-2 sm:w-2 sm:h-2 rounded-full ${
-              currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
-            }`} />
+            <span
+              className={`w-2 h-2 sm:w-2 sm:h-2 rounded-full ${
+                currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
+              }`}
+            />
           </button>
         ))}
       </div>
