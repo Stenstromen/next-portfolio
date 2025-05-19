@@ -220,4 +220,8 @@ export const quotes: Quote[] = [
     quote: "You weren't unhappy until they told you you should be",
     author: "Technology Connections (YouTube)"
   },
+  {
+    quote: "We robots don’t have emotions, and sometimes, that makes us very sad",
+    author: "Bender (Futurama)"
+  },
 ]; 
