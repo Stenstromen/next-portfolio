@@ -49,13 +49,13 @@ const {
   MARIADB,
   NODEJS,
   NEXTJS,
-  PYTHON,
+  // PYTHON,
   REACTJS,
   REACTNATIVE,
   RUST,
   SHELL,
   SOCKETIO,
-  TENSORFLOW,
+  // TENSORFLOW,
   TS,
   WORDPRESS,
 } = BadgesList;
@@ -307,7 +307,7 @@ const ProjectList: Project[] = [
     github: "https://github.com/Stenstromen/lotemp",
     badges: [RUST],
   },
-  {
+/*   {
     image:
       "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICA8cGF0aCBkPSJNMjIgMTJoLTRtLTIgMGE2IDYgMCAwIDAtNiA2djJtNi0yYTYgNiAwIDAgMCA2LTYgNiA2IDAgMCAwLTYtNiA2IDYgMCAwIDAtNiA2IDYgNiAwIDAgMCA2IDZ2MmE2IDYgMCAwIDEtNi02IDYgNiAwIDAgMSA2LTYgNiA2IDAgMCAxIDYgNiA2IDYgMCAwIDEtNiA2bTYtNmg0Ij48L3BhdGg+Cjwvc3ZnPgo=",
     title: "OpenVision",
@@ -316,7 +316,7 @@ const ProjectList: Project[] = [
     link: "https://openvision.boo",
     github: "https://github.com/Stenstromen/openvision",
     badges: [REACTJS, TS, TENSORFLOW],
-  },
+  }, */
   {
     image: peppojnet,
     title: "Peppoj.net",
@@ -416,7 +416,7 @@ const ProjectList: Project[] = [
     github: "https://github.com/Stenstromen/registryport",
     badges: [REACTNATIVE, TS, DOCKER],
   },
-  {
+  /*   {
     image:
       "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgNjAiPgogIDxwYXRoIGZpbGw9ImxpZ2h0Z3JheSIgZD0iTTEwIDEwIFEgMjAgMCwgMzAgMTAgVCA1MCAxMCBUIDcwIDEwIFQgOTAgMTAgUSAxMDAgMCwgMTEwIDEwIiAvPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iMzAiIHI9IjIwIiBmaWxsPSJsaWdodGJsdWUiIC8+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSIzMCIgcj0iMTAiIGZpbGw9IndoaXRlIiAvPgogIDxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik0gNjAgNDAgUSA3MCA1MCwgODAgNDAgVCAxMDAgNDAiIC8+Cjwvc3ZnPgo=",
     title: "Twaddle",
@@ -424,7 +424,7 @@ const ProjectList: Project[] = [
     link: "https://twaddle.page",
     github: "https://github.com/Stenstromen/twaddle-frontend",
     badges: [REACTJS, TS, PYTHON, TENSORFLOW, KUBERNETES],
-  },
+  }, */
 ];
 
 export default ProjectList;
