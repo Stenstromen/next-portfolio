@@ -35,6 +35,7 @@ import rustyalias from "../img/rustyalias.webp";
 import rustex from "../img/rustex.webp";
 import s3dbdump from "../img/s3dbdump.webp";
 import dane from "../img/dane.webp";
+import kubectxedit from "../img/kubectx-edit.webp";
 import BadgesList from "./BadgesList";
 
 const {
@@ -101,13 +102,13 @@ const ProjectList: Project[] = [
     badges: [RUST],
   },
   {
-    image: readthenburn,
-    title: "ReadThenBurn.se",
+    image: kubectxedit,
+    title: "kubectx-edit",
     description:
-      "Create temporary, shareable, messages. Only readable once. Read-Then-Burn.",
-    link: "http://readthenburn.se",
-    github: "https://github.com/Stenstromen/readthenburn-frontend",
-    badges: [REACTJS, GO, MARIADB, KUBERNETES],
+      "Small software utility to efficiently manage multiple kubeconfig contexts.",
+    link: "https://github.com/Stenstromen/kubectx-edit",
+    github: "https://github.com/Stenstromen/kubectx-edit",
+    badges: [RUST, KUBERNETES],
   },
   {
     image: nyancat,
@@ -150,6 +151,15 @@ const ProjectList: Project[] = [
     link: "https://grumpycat.se",
     github: "https://github.com/Stenstromen/grumpypgpweb",
     badges: [REACTJS, TS],
+  },
+  {
+    image: readthenburn,
+    title: "ReadThenBurn.se",
+    description:
+      "Create temporary, shareable, messages. Only readable once. Read-Then-Burn.",
+    link: "http://readthenburn.se",
+    github: "https://github.com/Stenstromen/readthenburn-frontend",
+    badges: [REACTJS, GO, MARIADB, KUBERNETES],
   },
   {
     image: doggate,
@@ -307,7 +317,7 @@ const ProjectList: Project[] = [
     github: "https://github.com/Stenstromen/lotemp",
     badges: [RUST],
   },
-/*   {
+  /*   {
     image:
       "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICA8cGF0aCBkPSJNMjIgMTJoLTRtLTIgMGE2IDYgMCAwIDAtNiA2djJtNi0yYTYgNiAwIDAgMCA2LTYgNiA2IDAgMCAwLTYtNiA2IDYgMCAwIDAtNiA2IDYgNiAwIDAgMCA2IDZ2MmE2IDYgMCAwIDEtNi02IDYgNiAwIDAgMSA2LTYgNiA2IDAgMCAxIDYgNiA2IDYgMCAwIDEtNiA2bTYtNmg0Ij48L3BhdGg+Cjwvc3ZnPgo=",
     title: "OpenVision",
