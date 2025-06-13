@@ -36,6 +36,7 @@ import rustex from "../img/rustex.webp";
 import s3dbdump from "../img/s3dbdump.webp";
 import dane from "../img/dane.webp";
 import kubectxedit from "../img/kubectx-edit.webp";
+import kubectlmscale from "../img/kubectl-mscale.webp";
 import BadgesList from "./BadgesList";
 
 const {
@@ -214,6 +215,15 @@ const ProjectList: Project[] = [
     link: "https://github.com/Stenstromen/bright/releases/latest",
     github: "https://github.com/Stenstromen/bright",
     badges: [RUST],
+  },
+  {
+    image: kubectlmscale,
+    title: "kubectl-mscale",
+    description:
+      "A kubectl plugin for scaling resources across multiple namespaces simultaneously",
+    link: "https://github.com/Stenstromen/kubectl-mscale/releases/latest/",
+    github: "https://github.com/Stenstromen/kubectl-mscale",
+    badges: [GO, KUBERNETES],
   },
   {
     image: bf2042ico,
