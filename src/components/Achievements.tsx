@@ -7,6 +7,7 @@ import lfs260 from "../img/lfs260.png";
 import lfs157 from "../img/lfs157.png";
 import lfel1009 from "../img/lfel1009.png";
 import lfel1002 from "../img/lfel1002.png";
+import lfs256 from "../img/lfs256.png";
 
 interface Badge {
   id: string;
@@ -74,6 +75,14 @@ export default function Achievements({
             issuer: "Linux Foundation",
             earnedDate: "2025-03-20",
             url: "https://www.credly.com/earner/earned/badge/d49310d4-1adf-4d36-9f96-6d3c3832ef20",
+          },
+          {
+            id: "6",
+            name: "LFS256: DevOps and Workflow Management with Argo",
+            imageUrl: lfs256,
+            issuer: "Linux Foundation",
+            earnedDate: "2025-06-19",
+            url: "https://www.credly.com/earner/earned/badge/68bf45de-9e84-4115-be76-259ad903a739",
           },
         ];
 
