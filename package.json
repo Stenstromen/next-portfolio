@@ -1,6 +1,6 @@
 {
   "name": "next-portfolio",
-  "version": "v0.5.3",
+  "version": "v0.5.4",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack --port 3001",
