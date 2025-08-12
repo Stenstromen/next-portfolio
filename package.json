@@ -22,7 +22,7 @@
     "react-icons": "^5.4.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.11",
+    "@cloudflare/next-on-pages": "^1.13.13",
     "@cloudflare/workers-types": "^4.20250712.0",
     "@eslint/eslintrc": "^3",
     "@testing-library/dom": "^10.4.0",
