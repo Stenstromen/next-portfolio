@@ -37,6 +37,7 @@ import s3dbdump from "../img/s3dbdump.webp";
 import dane from "../img/dane.webp";
 import kubectxedit from "../img/kubectx-edit.webp";
 import kubectlmscale from "../img/kubectl-mscale.webp";
+import video2gif from "../img/video2gif.webp";
 import BadgesList from "./BadgesList";
 
 const {
@@ -51,13 +52,11 @@ const {
   MARIADB,
   NODEJS,
   NEXTJS,
-  // PYTHON,
   REACTJS,
   REACTNATIVE,
   RUST,
   SHELL,
   SOCKETIO,
-  // TENSORFLOW,
   TS,
   WORDPRESS,
 } = BadgesList;
@@ -144,6 +143,15 @@ const ProjectList: Project[] = [
     link: "https://apps.apple.com/se/app/grumpypgp/id6474478177",
     github: "https://github.com/Stenstromen/grumpypgp",
     badges: [REACTNATIVE, TS],
+  },
+  {
+    image: video2gif,
+    title: "Video2Gif",
+    description:
+      "A comprehensive bash script that converts video files to optimized GIFs.",
+    link: "https://github.com/Stenstromen/video2gif",
+    github: "https://github.com/Stenstromen/video2gif",
+    badges: [SHELL],
   },
   {
     image: grumpypgpweb,
