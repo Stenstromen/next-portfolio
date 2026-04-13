@@ -41,6 +41,6 @@
     "vercel": "^44.6.4",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4",
-    "wrangler": "^4.82.1"
+    "wrangler": "^4.82.2"
   }
 }
