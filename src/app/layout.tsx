@@ -6,8 +6,6 @@ import Navbar from '@/components/Navbar'
 import Footer from "@/components/Footer";
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-export const runtime = "edge";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
