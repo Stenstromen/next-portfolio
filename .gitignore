@@ -46,3 +46,5 @@ next-env.d.ts
 
 # unlighthouse
 .unlighthouse
+
+.open-next
