@@ -23,7 +23,7 @@
     "react-icons": "^5.4.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260413.1",
+    "@cloudflare/workers-types": "^4.20260414.1",
     "@eslint/eslintrc": "^3",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
