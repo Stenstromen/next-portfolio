@@ -7,8 +7,3 @@ updates:
       interval: weekly
     commit-message:
       prefix: ":arrow_up: upgrade:"
-    ignore:
-      - dependency-name: "next"
-        versions: [">=15.2.0"]
-      - dependency-name: "eslint-config-next"
-        versions: [">=15.2.0"]
