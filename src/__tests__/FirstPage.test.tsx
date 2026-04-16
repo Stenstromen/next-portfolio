@@ -2,18 +2,6 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, cleanup } from "@testing-library/react";
 import FirstPage from "../components/FirstPage";
 
-vi.mock("next/dynamic", () => ({
-  default: () => {
-    const DynamicComponent = ({ nonce }: { nonce?: string }) => (
-      <div data-testid="badge-grid" data-nonce={nonce}>
-        Mock Badge Grid
-      </div>
-    );
-    DynamicComponent.displayName = "BadgeGrid";
-    return DynamicComponent;
-  },
-}));
-
 vi.mock("../components/ScrollToTop", () => ({
   default: () => <div data-testid="scroll-to-top">Mock ScrollToTop</div>,
 }));
@@ -28,8 +16,10 @@ describe("FirstPage", () => {
 
     const heading = container.querySelector("h1");
     const subheading = container.querySelector("h2");
-    const location = container.querySelector("h5");
-    const tagline = container.querySelector("h4");
+    const location = container.querySelector(
+      ".fade-in-left p",
+    );
+    const tagline = container.querySelector("h3");
 
     expect(heading).toHaveTextContent("Hello!");
     expect(subheading).toHaveTextContent(/I'm Filip/);
@@ -50,14 +40,6 @@ describe("FirstPage", () => {
     expect(contentCard).toBeTruthy();
   });
 
-  it("passes nonce prop to BadgeGrid", () => {
-    const testNonce = "test-nonce-123";
-    const { container } = render(<FirstPage nonce={testNonce} />);
-
-    const badgeGrid = container.querySelector('[data-testid="badge-grid"]');
-    expect(badgeGrid).toHaveAttribute("data-nonce", testNonce);
-  });
-
   it("includes ScrollToTop component", () => {
     const { container } = render(<FirstPage />);
     const scrollToTop = container.querySelector(
@@ -66,13 +48,11 @@ describe("FirstPage", () => {
     expect(scrollToTop).toBeTruthy();
   });
 
-  it("has proper responsive layout classes", () => {
+  it("uses constrained width wrapper for hero content", () => {
     const { container } = render(<FirstPage />);
 
-    const badgeGridContainer = container.querySelector(
-      ".lg\\:absolute.lg\\:bottom-10.lg\\:right-2"
-    );
-    expect(badgeGridContainer).toBeTruthy();
+    const wrapper = container.querySelector("#home .max-w-7xl");
+    expect(wrapper).toBeTruthy();
   });
 
   it("applies hover animation class to main content card", () => {

@@ -156,7 +156,7 @@ export default function ProjectCarousel({
     <div id="projects" className="relative w-full max-w-full overflow-hidden">
       <button
         onClick={prevPage}
-        className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 p-4 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-12 h-48 flex items-center justify-center ${
+        className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 p-4 bg-[#c94986] text-white rounded-lg hover:bg-[#b83d78] transition-colors w-12 h-48 flex items-center justify-center ${
           currentPage === 0 ? "hidden" : ""
         }`}
         aria-label="Previous page"
@@ -165,7 +165,7 @@ export default function ProjectCarousel({
       </button>
       <button
         onClick={nextPage}
-        className={`absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-10 p-4 bg-[#f686bd]/80 text-white rounded-lg hover:bg-[#f686bd] transition-colors w-12 h-48 flex items-center justify-center ${
+        className={`absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-10 p-4 bg-[#c94986] text-white rounded-lg hover:bg-[#b83d78] transition-colors w-12 h-48 flex items-center justify-center ${
           currentPage === totalPages - 1 ? "hidden" : ""
         }`}
         aria-label="Next page"
@@ -180,10 +180,10 @@ export default function ProjectCarousel({
               <button
                 key={index}
                 onClick={() => handleFilterChange(filter)}
-                className={`px-2 py-1 sm:px-3 sm:py-1 text-sm sm:text-base rounded-lg transition-colors ${
+                className={`px-2 py-1 sm:px-3 sm:py-1 text-sm sm:text-base rounded-lg transition-colors font-medium ${
                   activeFilter === filter
-                    ? "bg-[#f686bd] text-white"
-                    : "bg-[#d8e2dc]/30 text-white hover:bg-[#d8e2dc]/50"
+                    ? "bg-[#f686bd] text-[#12151f] shadow-sm"
+                    : "bg-[#2d3142] text-[#f2f6f4] border border-[#5c677a] hover:bg-[#3d4659] hover:border-[#6d7a90]"
                 }`}
               >
                 {filter}
@@ -220,13 +220,13 @@ export default function ProjectCarousel({
             key={index}
             onClick={() => handlePageClick(index)}
             className={`w-8 h-8 sm:w-4 sm:h-4 rounded-full transition-colors flex items-center justify-center ${
-              currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
+              currentPage === index ? "bg-[#d8e2dc]" : "bg-[#4f5d75]"
             }`}
             aria-label={`Go to page ${index + 1}`}
           >
             <span
               className={`w-2 h-2 sm:w-2 sm:h-2 rounded-full ${
-                currentPage === index ? "bg-[#d8e2dc]" : "bg-[#d8e2dc]/30"
+                currentPage === index ? "bg-[#2d3142]" : "bg-[#c8d0d8]"
               }`}
             />
           </button>

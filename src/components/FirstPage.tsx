@@ -1,13 +1,13 @@
 "use client";
 
 import ScrollToTop from "./ScrollToTop";
-import dynamic from "next/dynamic";
+//import dynamic from "next/dynamic";
 
-const BadgeGrid = dynamic(() => import("./BadgeGrid"), {
+/* const BadgeGrid = dynamic(() => import("./BadgeGrid"), {
   loading: () => (
     <div className="w-full h-[600px] bg-[#445066] animate-pulse"></div>
   ),
-});
+}); */
 
 interface FirstPageProps {
   nonce?: string;
@@ -17,6 +17,7 @@ export default function FirstPage({ nonce }: FirstPageProps) {
   return (
     <div
       id="home"
+      data-nonce={nonce}
       className="overflow-x-hidden bg-[#4f5d75] min-h-screen relative py-8"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-14">
@@ -31,20 +32,20 @@ export default function FirstPage({ nonce }: FirstPageProps) {
               <br />
               DevOps by day, Programmer by passion.
             </h2>
-            <h4 className="text-[#d8e2dc] pl-[5%] text-[35px]">
+            <h3 className="text-[#d8e2dc] pl-[5%] text-[35px]">
               <em>I move fast and break things.</em>
-            </h4>
-            <h5 className="text-[#d8e2dc] pl-[5%]">
+            </h3>
+            <p className="text-[#d8e2dc] pl-[5%]">
               - Based in Stockholm, Sweden.
-            </h5>
+            </p>
           </div>
         </div>
       </div>
 
       {/* Badge Grid - Absolute positioning only on desktop */}
-      <div className="lg:absolute lg:bottom-10 lg:right-2 px-4 sm:px-6 lg:px-0">
+{/*       <div className="lg:absolute lg:bottom-10 lg:right-2 px-4 sm:px-6 lg:px-0">
         <BadgeGrid nonce={nonce} />
-      </div>
+      </div> */}
       <ScrollToTop />
     </div>
   );

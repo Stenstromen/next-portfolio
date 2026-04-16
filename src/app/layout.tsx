@@ -56,7 +56,7 @@ export default async function RootLayout({
         data-nonce={nonce}
       >
         <Navbar />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
       <GoogleAnalytics nonce={nonce || ''} gaId="G-835MSCWR7N" />

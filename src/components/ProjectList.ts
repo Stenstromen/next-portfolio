@@ -137,6 +137,14 @@ const ProjectList: Project[] = [
     badges: [GO, CLOUDFLARE],
   },
   {
+    image: outlinewikibackup,
+    title: "OutlineWiki Backup",
+    description: "OutlineWiki Backup Utility",
+    link: "https://github.com/Stenstromen/outlinewikibackup",
+    github: "https://github.com/Stenstromen/outlinewikibackup",
+    badges: [GO, DOCKER],
+  },
+  {
     image: grumpypgp,
     title: "GrumpyPGP",
     description: "The lack of a good PGP app for iOS makes the cat grumpy.",
@@ -266,14 +274,6 @@ const ProjectList: Project[] = [
     link: "https://github.com/Stenstromen/dockerctx/releases/latest/",
     github: "https://github.com/Stenstromen/dockerctx",
     badges: [SHELL],
-  },
-  {
-    image: outlinewikibackup,
-    title: "OutlineWiki Backup",
-    description: "OutlineWiki Backup Utility",
-    link: "https://github.com/Stenstromen/outlinewikibackup",
-    github: "https://github.com/Stenstromen/outlinewikibackup",
-    badges: [GO, DOCKER],
   },
   {
     image: pusheencat,

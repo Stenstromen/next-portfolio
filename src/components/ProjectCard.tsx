@@ -44,7 +44,7 @@ export default function ProjectCard({
       </div>
 
       <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-      <p className="text-sm text-white/90 mb-4 flex-grow leading-relaxed">
+      <p className="text-sm text-[#eceff1] mb-4 flex-grow leading-relaxed">
         {description}
       </p>
 
@@ -59,7 +59,7 @@ export default function ProjectCard({
           href={link}
           target="_blank"
           rel="noreferrer"
-          className="text-lg text-white/70 hover:text-white transition-colors flex items-center gap-2"
+          className="text-lg text-[#e3e7ea] hover:text-white transition-colors flex items-center gap-2"
         >
           <span className="text-lg">[ ▶ View ]</span>
         </a>
@@ -69,7 +69,7 @@ export default function ProjectCard({
             href={github}
             target="_blank"
             rel="noreferrer"
-            className="text-lg text-white/70 hover:text-white transition-colors flex items-center gap-2"
+            className="text-lg text-[#e3e7ea] hover:text-white transition-colors flex items-center gap-2"
           >
             [<FaGithub className="w-4 h-4" /> Source ]
           </a>
