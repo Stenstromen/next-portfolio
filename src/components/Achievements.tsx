@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, TouchEvent, useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
+import { TouchEvent, useEffect, useLayoutEffect, useRef } from "react";
+import type { StaticImageData } from "next/image";
 import lfs458 from "../img/lfs458.png";
 import lfs260 from "../img/lfs260.png";
 import lfs157 from "../img/lfs157.png";
@@ -27,10 +27,10 @@ export default function Achievements({
   badges = [],
   nonce,
 }: AchievementsProps) {
-  const [scrollPosition, setScrollPosition] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const [touchStart, setTouchStart] = useState<number>(0);
+  const scrollPositionRef = useRef(0);
+  const isPausedRef = useRef(false);
+  const touchStartRef = useRef(0);
 
   const defaultBadges: Badge[] =
     badges.length > 0
@@ -88,30 +88,41 @@ export default function Achievements({
 
   const allBadges = [...defaultBadges, ...defaultBadges];
 
+  const applyScrollVar = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.style.setProperty(
+      "--achievements-scroll",
+      `${scrollPositionRef.current}px`,
+    );
+  };
+
+  useLayoutEffect(() => {
+    const el = scrollRef.current;
+    if (el && nonce) {
+      el.setAttribute("nonce", nonce);
+    }
+  }, [nonce]);
+
   useEffect(() => {
     let animationId: number;
     let lastTimestamp = 0;
 
     const scroll = (timestamp: number) => {
-      if (!isPaused) {
+      if (!isPausedRef.current) {
         if (lastTimestamp !== 0) {
           const delta = timestamp - lastTimestamp;
           const pixelsPerSecond = 60;
           const pixelsToMove = (pixelsPerSecond * delta) / 1000;
 
-          setScrollPosition((prev) => {
-            const scrollContainer = scrollRef.current;
-            if (!scrollContainer) return prev;
-
+          const scrollContainer = scrollRef.current;
+          if (scrollContainer) {
             const containerWidth = scrollContainer.scrollWidth / 2;
-            const newPosition = prev + pixelsToMove;
-
-            if (newPosition >= containerWidth) {
-              return 0;
-            }
-
-            return newPosition;
-          });
+            const newPosition = scrollPositionRef.current + pixelsToMove;
+            scrollPositionRef.current =
+              newPosition >= containerWidth ? 0 : newPosition;
+            applyScrollVar();
+          }
         }
         lastTimestamp = timestamp;
       }
@@ -123,30 +134,31 @@ export default function Achievements({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [isPaused]);
+  }, []);
 
   const handleTouchStart = (e: TouchEvent) => {
-    setIsPaused(true);
-    setTouchStart(e.targetTouches[0].clientX);
+    isPausedRef.current = true;
+    touchStartRef.current = e.targetTouches[0].clientX;
   };
 
   const handleTouchMove = (e: TouchEvent) => {
-    const dragDistance = touchStart - e.targetTouches[0].clientX;
-    setScrollPosition((prev) => prev + dragDistance * 0.5);
-
-    setTouchStart(e.targetTouches[0].clientX);
+    const dragDistance =
+      touchStartRef.current - e.targetTouches[0].clientX;
+    scrollPositionRef.current += dragDistance * 0.5;
+    touchStartRef.current = e.targetTouches[0].clientX;
+    applyScrollVar();
   };
 
   const handleTouchEnd = () => {
-    setIsPaused(false);
+    isPausedRef.current = false;
   };
 
   const handleMouseEnter = () => {
-    setIsPaused(true);
+    isPausedRef.current = true;
   };
 
   const handleMouseLeave = () => {
-    setIsPaused(false);
+    isPausedRef.current = false;
   };
 
   return (
@@ -160,8 +172,7 @@ export default function Achievements({
           >
             <div
               ref={scrollRef}
-              className="flex"
-              style={{ transform: `translateX(-${scrollPosition}px)` }}
+              className="flex achievements-marquee-track"
               nonce={nonce}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
@@ -177,15 +188,16 @@ export default function Achievements({
                     className="bg-[#2d3142] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105 flex-shrink-0 w-64"
                   >
                     <div className="p-4 flex flex-col items-center">
-                      <div className="relative w-48 h-48 mb-3">
-                        <Image
-                          src={badge.imageUrl}
-                          alt={badge.name}
-                          fill
-                          sizes="256px"
-                          className="object-contain"
-                        />
-                      </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element -- next/image uses blocked inline styles under style-src-attr */}
+                      <img
+                        src={badge.imageUrl.src}
+                        alt={badge.name}
+                        width={192}
+                        height={192}
+                        loading="lazy"
+                        decoding="async"
+                        className="object-contain mb-3 w-48 h-48"
+                      />
                     </div>
                   </a>
                 ))}

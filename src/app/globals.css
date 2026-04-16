@@ -51,6 +51,11 @@ body {
   animation: fadeInRight 2s ease-out forwards;
 }
 
+/* Transform from stylesheet so strict style-src-attr only needs a nonce on the variable update. */
+.achievements-marquee-track {
+  transform: translateX(calc(-1 * var(--achievements-scroll, 0px)));
+}
+
 @media (max-width: 425px) {
   .HomeH1 {
     padding-top: 15%;
