@@ -2,12 +2,12 @@
 
 import { TouchEvent, useEffect, useLayoutEffect, useRef } from "react";
 import type { StaticImageData } from "next/image";
-import lfs458 from "../img/lfs458_196.webp";
-import lfs260 from "../img/lfs260_196.webp";
-import lfs157 from "../img/lfs157_196.webp";
-import lfel1009 from "../img/lfel1009_196.webp";
-import lfel1002 from "../img/lfel1002_196.webp";
-import lfs256 from "../img/lfs256_196.webp";
+import lfs458 from "../img/lfs458_192.webp";
+import lfs260 from "../img/lfs260_192.webp";
+import lfs157 from "../img/lfs157_192.webp";
+import lfel1009 from "../img/lfel1009_192.webp";
+import lfel1002 from "../img/lfel1002_192.webp";
+import lfs256 from "../img/lfs256_192.webp";
 
 interface Badge {
   id: string;
