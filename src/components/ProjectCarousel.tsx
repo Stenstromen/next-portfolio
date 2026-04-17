@@ -57,7 +57,7 @@ export default function ProjectCarousel({
     setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
   }, [totalPages]);
 
-  const handleTouchStart = (e: TouchEvent) => {
+  /*   const handleTouchStart = (e: TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
 
@@ -84,7 +84,7 @@ export default function ProjectCarousel({
       setAutoPlay(false);
       prevPage();
     }
-  };
+  }; */
 
   const handlePageClick = (index: number) => {
     setAutoPlay(false);
@@ -106,7 +106,7 @@ export default function ProjectCarousel({
         return filteredProjects.slice(startIndex, startIndex + itemsPerPage);
       });
     },
-    [itemsPerPage, totalPages, filteredProjects]
+    [itemsPerPage, totalPages, filteredProjects],
   );
 
   const visiblePages = getVisiblePages(currentPage);
@@ -139,15 +139,15 @@ export default function ProjectCarousel({
       case "React":
         setFilteredProjects(
           projects.filter((project) =>
-            project.badges.some((badge) => badge.name === "REACTJS")
-          )
+            project.badges.some((badge) => badge.name === "REACTJS"),
+          ),
         );
         break;
       default:
         setFilteredProjects(
           projects.filter((project) =>
-            project.badges.some((badge) => badge.name === filter.toUpperCase())
-          )
+            project.badges.some((badge) => badge.name === filter.toUpperCase()),
+          ),
         );
     }
   };
@@ -196,9 +196,9 @@ export default function ProjectCarousel({
           className="flex transition-all duration-700 ease-in-out w-full"
           style={inlineStyle}
           nonce={nonce}
-          onTouchStart={handleTouchStart}
+          /*           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          onTouchEnd={handleTouchEnd} */
         >
           {visiblePages.map((pageProjects, pageIndex) => (
             <div key={pageIndex} className="w-full flex-shrink-0">
@@ -214,7 +214,7 @@ export default function ProjectCarousel({
         </div>
       </div>
 
-      <div className="flex justify-center gap-1 sm:gap-3 mt-4">
+      <div className="flex justify-center gap-1 sm:gap-3 md:visible invisible mt-4">
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
