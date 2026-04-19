@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, TouchEvent, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import type { Project } from "./ProjectList";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
@@ -19,8 +19,6 @@ export default function ProjectCarousel({
   nonce,
 }: ProjectCarouselProps) {
   const [currentPage, setCurrentPage] = useState(0);
-  const [touchStart, setTouchStart] = useState<number>(0);
-  const [touchEnd, setTouchEnd] = useState<number>(0);
   const [isMobile, setIsMobile] = useState(false);
   const [inlineStyle, setInlineStyle] = useState<{ [key: string]: string }>({});
   const [autoPlay, setAutoPlay] = useState(true);
@@ -56,35 +54,6 @@ export default function ProjectCarousel({
     setAutoPlay(false);
     setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
   }, [totalPages]);
-
-  /*   const handleTouchStart = (e: TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-    const deltaX = Math.abs(e.targetTouches[0].clientX - touchStart);
-    const deltaY = Math.abs(
-      e.targetTouches[0].pageY - e.targetTouches[0].clientY
-    );
-
-    if (deltaX > deltaY) {
-      e.preventDefault();
-    }
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleTouchEnd = (e: TouchEvent) => {
-    const swipeThreshold = 50;
-    if (touchStart - touchEnd > swipeThreshold) {
-      setAutoPlay(false);
-      nextPage();
-    }
-    if (touchEnd - touchStart > swipeThreshold) {
-      setAutoPlay(false);
-      prevPage();
-    }
-  }; */
 
   const handlePageClick = (index: number) => {
     setAutoPlay(false);
@@ -196,12 +165,9 @@ export default function ProjectCarousel({
           className="flex transition-all duration-700 ease-in-out w-full"
           style={inlineStyle}
           nonce={nonce}
-          /*           onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd} */
         >
           {visiblePages.map((pageProjects, pageIndex) => (
-            <div key={pageIndex} className="w-full flex-shrink-0">
+            <div key={pageIndex} className="w-full shrink-0">
               {pageProjects && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 sm:px-4">
                   {pageProjects.map((project, index) => (

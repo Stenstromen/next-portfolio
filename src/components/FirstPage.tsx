@@ -1,13 +1,6 @@
 "use client";
 
 import ScrollToTop from "./ScrollToTop";
-//import dynamic from "next/dynamic";
-
-/* const BadgeGrid = dynamic(() => import("./BadgeGrid"), {
-  loading: () => (
-    <div className="w-full h-[600px] bg-[#445066] animate-pulse"></div>
-  ),
-}); */
 
 interface FirstPageProps {
   nonce?: string;
@@ -42,10 +35,6 @@ export default function FirstPage({ nonce }: FirstPageProps) {
         </div>
       </div>
 
-      {/* Badge Grid - Absolute positioning only on desktop */}
-{/*       <div className="lg:absolute lg:bottom-10 lg:right-2 px-4 sm:px-6 lg:px-0">
-        <BadgeGrid nonce={nonce} />
-      </div> */}
       <ScrollToTop />
     </div>
   );

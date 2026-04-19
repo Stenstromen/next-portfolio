@@ -44,7 +44,7 @@ export default function ProjectCard({
       </div>
 
       <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-      <p className="text-sm text-[#eceff1] mb-4 flex-grow leading-relaxed">
+      <p className="text-sm text-[#eceff1] mb-4 grow leading-relaxed">
         {description}
       </p>
 
