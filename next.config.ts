@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  compress: false,
+  compress: true,
+  outputFileTracingRoot: process.cwd(),
   reactStrictMode: true,
   images: {
     disableStaticImages: false,

@@ -88,13 +88,13 @@ describe("Achievements", () => {
     });
 
     const scrollDiv = container.querySelector(".flex") as HTMLElement;
-    const initialTransform = scrollDiv?.style.transform;
+    const initialScroll = scrollDiv?.style.getPropertyValue("--achievements-scroll");
 
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 100));
     });
 
-    expect(scrollDiv?.style.transform).toBe(initialTransform);
+    expect(scrollDiv?.style.getPropertyValue("--achievements-scroll")).toBe(initialScroll);
   });
 
   it("resumes scrolling on mouse leave", async () => {
@@ -111,15 +111,12 @@ describe("Achievements", () => {
     // Mock getBoundingClientRect for the scroll container
     vi.spyOn(scrollDiv, 'getBoundingClientRect').mockImplementation(mockGetBoundingClientRect);
     
-    // Set initial scroll position
-    scrollDiv.style.transform = 'translateX(-100px)';
-    
     await act(async () => {
       fireEvent.mouseEnter(scrollContainer!);
       await new Promise(resolve => setTimeout(resolve, 50));
     });
 
-    const initialTransform = scrollDiv.style.transform;
+    const initialScroll = scrollDiv.style.getPropertyValue("--achievements-scroll");
     
     await act(async () => {
       fireEvent.mouseLeave(scrollContainer!);
@@ -127,10 +124,8 @@ describe("Achievements", () => {
       await new Promise(resolve => setTimeout(resolve, 50));
     });
 
-    // Verify the transform has changed
-    expect(scrollDiv.style.transform).not.toBe(initialTransform);
-    // Verify it's a valid transform value (allowing for decimal numbers)
-    expect(scrollDiv.style.transform).toMatch(/translateX\(-?\d+(\.\d+)?px\)/);
+    expect(scrollDiv.style.getPropertyValue("--achievements-scroll")).not.toBe(initialScroll);
+    expect(scrollDiv.style.getPropertyValue("--achievements-scroll")).toMatch(/\d+(\.\d+)?px/);
   });
 
   it("handles touch events correctly", async () => {
@@ -145,7 +140,7 @@ describe("Achievements", () => {
       await new Promise((resolve) => setTimeout(resolve, 50));
     });
 
-    const initialTransform = scrollDiv?.style.transform;
+    const initialScroll = scrollDiv?.style.getPropertyValue("--achievements-scroll");
 
     // Touch move
     await act(async () => {
@@ -155,7 +150,7 @@ describe("Achievements", () => {
       await new Promise((resolve) => setTimeout(resolve, 50));
     });
 
-    expect(scrollDiv?.style.transform).not.toBe(initialTransform);
+    expect(scrollDiv?.style.getPropertyValue("--achievements-scroll")).not.toBe(initialScroll);
   });
 
   it("applies correct styling to badge containers", () => {

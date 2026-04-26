@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: '/:path*',
-}
- 
+  matcher: "/:path*",
+};
+
 export function middleware(request: NextRequest) {
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
+  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const cspHeader = `
     default-src 'self';
     connect-src 'self' https://keys.openpgp.org https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://region1.google-analytics.com;
@@ -20,33 +19,30 @@ export function middleware(request: NextRequest) {
     form-action 'self';
     frame-ancestors 'none';
     upgrade-insecure-requests;
-`
+`;
   const contentSecurityPolicyHeaderValue = cspHeader
-    .replace(/\s{2,}/g, ' ')
-    .trim()
+    .replace(/\s{2,}/g, " ")
+    .trim();
 
   // Forward nonce on the request so Server Components can read it via headers().
-  // (Response-only headers are not visible to headers().)
-  const requestHeaders = new Headers(request.headers)
-  requestHeaders.set('x-nonce', nonce)
+  // Response-only headers are not visible to headers().
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-nonce", nonce);
 
   const response = NextResponse.next({
     request: {
       headers: requestHeaders,
     },
-  })
+  });
 
-  // Add security headers
-  response.headers.set('X-Frame-Options', 'DENY')
-  response.headers.set('X-Content-Type-Options', 'nosniff')
-  response.headers.set('Referrer-Policy', 'same-origin')
-  
-  // Set both the nonce and CSP headers on the response
-  response.headers.set('x-nonce', nonce)
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("Referrer-Policy", "same-origin");
+  response.headers.set("x-nonce", nonce);
   response.headers.set(
-    'Content-Security-Policy',
-    contentSecurityPolicyHeaderValue
-  )
- 
-  return response
+    "Content-Security-Policy",
+    contentSecurityPolicyHeaderValue,
+  );
+
+  return response;
 }

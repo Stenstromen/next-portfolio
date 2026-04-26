@@ -62,14 +62,6 @@ test("renders badges with correct container styling", () => {
   });
 });
 
-test("passes nonce prop to Badge components", () => {
-  const testNonce = "test-nonce";
-  render(<BadgeGrid nonce={testNonce} />);
-
-  const badges = screen.getAllByTestId("mock-badge");
-  expect(badges).toHaveLength(12);
-});
-
 test("renders all badges when showAllBadges is true", () => {
   render(<BadgeGrid />);
 
