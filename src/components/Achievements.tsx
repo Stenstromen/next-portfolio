@@ -3,6 +3,7 @@
 import { TouchEvent, useEffect, useLayoutEffect, useRef } from "react";
 import type { StaticImageData } from "next/image";
 import achievements from "./achievementsData";
+import { formatIsoDateForDisplay } from "@/lib/formatIsoDate";
 
 interface Badge {
   id: string;
@@ -110,7 +111,7 @@ export default function Achievements({
           <h2 className="text-2xl sm:text-3xl font-semibold text-[#d8e2dc] mb-2">
             Certifications
           </h2>
-          <p className="text-[#c8d0d8] text-sm sm:text-base leading-relaxed">
+          <p className="text-[#dce6ea] text-sm sm:text-base leading-relaxed">
             Linux Foundation and related credentials — Kubernetes operations,
             security, GitOps with Argo, and infrastructure as code.
           </p>
@@ -149,18 +150,14 @@ export default function Achievements({
                         decoding="async"
                         className="object-contain mb-3 w-48 h-48"
                       />
-                      <p className="text-xs font-medium text-[#eceff1] leading-snug line-clamp-2 mb-1">
+                      <p className="text-xs font-medium text-[#f2f6f4] leading-snug line-clamp-2 mb-1">
                         {badge.name}
                       </p>
-                      <p className="text-[11px] text-[#b0bcc8] mb-0.5">
+                      <p className="text-xs text-[#d8e2dc] mb-0.5">
                         {badge.issuer}
                       </p>
-                      <p className="text-[11px] text-[#8a96a3] tabular-nums">
-                        {new Date(badge.earnedDate).toLocaleDateString("en-GB", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })}
+                      <p className="text-xs text-[#d0dadf] tabular-nums">
+                        {formatIsoDateForDisplay(badge.earnedDate)}
                       </p>
                     </div>
                   </a>
