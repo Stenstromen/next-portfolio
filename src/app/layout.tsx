@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from '@/components/Navbar'
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -67,8 +67,22 @@ export default async function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-835MSCWR7N"
+          strategy="lazyOnload"
+          nonce={nonce ?? undefined}
+        />
+        <Script
+          id="ga-inline"
+          strategy="lazyOnload"
+          nonce={nonce ?? undefined}
+        >{`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-835MSCWR7N');
+`}</Script>
       </body>
-      <GoogleAnalytics nonce={nonce || ''} gaId="G-835MSCWR7N" />
     </html>
   );
 }

@@ -2,6 +2,14 @@
   "name": "next-portfolio",
   "version": "v0.6.3",
   "private": true,
+  "browserslist": [
+    "Chrome >= 109",
+    "Edge >= 109",
+    "Firefox >= 115",
+    "Safari >= 16.4",
+    "iOS >= 16.4",
+    "not dead"
+  ],
   "scripts": {
     "dev": "next dev --turbopack --port 3001",
     "build": "next build",
@@ -14,7 +22,6 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@next/third-parties": "^15.5.15",
     "@opennextjs/cloudflare": "^1.19.1",
     "@tailwindcss/postcss": "^4.1.11",
     "next": "^15.5.15",
