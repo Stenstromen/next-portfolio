@@ -54,14 +54,15 @@ export default function ProjectCard({
         ))}
       </div>
 
-      <div className="flex items-center gap-3 mt-auto">
+      <div className="flex items-center gap-4 mt-auto flex-wrap">
         <a
           href={link}
           target="_blank"
           rel="noreferrer"
-          className="text-lg text-[#e3e7ea] hover:text-white transition-colors flex items-center gap-2"
+          className="text-base font-medium text-[#f686bd] hover:text-[#ffb3d9] transition-colors underline-offset-4 hover:underline"
+          aria-label={`Open live demo or site for ${title}`}
         >
-          <span className="text-lg">[ ▶ View ]</span>
+          Demo
         </a>
 
         {github && (
@@ -69,9 +70,11 @@ export default function ProjectCard({
             href={github}
             target="_blank"
             rel="noreferrer"
-            className="text-lg text-[#e3e7ea] hover:text-white transition-colors flex items-center gap-2"
+            className="text-base font-medium text-[#e3e7ea] hover:text-white transition-colors inline-flex items-center gap-1.5"
+            aria-label={`View source code for ${title} on GitHub`}
           >
-            [<FaGithub className="w-4 h-4" /> Source ]
+            <FaGithub className="w-4 h-4 shrink-0" aria-hidden />
+            Source
           </a>
         )}
       </div>

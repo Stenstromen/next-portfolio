@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Portfolio surfaces (aligns with in-page Tailwind hex usage) */
+  --portfolio-elevated: #2d3142;
+  --portfolio-muted: #4f5d75;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,7 +18,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 .pink {

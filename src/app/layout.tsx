@@ -20,21 +20,30 @@ export const viewport: Viewport = {
   themeColor: "#2d3142",
 }
 
-export const metadata: Metadata = { 
+const siteDescription =
+  "Filip Stenström — platform and DevOps engineer in Stockholm. Deep Kubernetes experience, Linux Foundation certifications, GitOps with Argo, infrastructure as code (OpenTofu), and open source tools for clusters and delivery pipelines.";
+
+export const metadata: Metadata = {
   metadataBase: new URL("https://stenstromen.se"),
-  title: "Stenstromen",
-  description: "Explore my personal portfolio showcasing my projects in HTML, CSS, JavaScript, ReactJS, ReactTS, React Native, and Golang. Get insights into my expertise in Linux, Docker, and Kubernetes.",
-  keywords: "personal portfolio, HTML projects, CSS projects, JavaScript projects, ReactJS projects, ReactTS projects, React Native projects, Golang projects, Linux expertise, Docker knowledge, Kubernetes skills",
+  title: "Stenstromen — Platform & Kubernetes",
+  description: siteDescription,
+  keywords:
+    "platform engineer, DevOps, Kubernetes, Linux Foundation, GitOps, Argo, OpenTofu, Terraform, kubectl plugins, Stockholm, open source, Go, Rust, React",
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Stenstromen",
-    description: "Explore my personal portfolio showcasing my projects in HTML, CSS, JavaScript, ReactJS, ReactTS, React Native, and Golang. Get insights into my expertise in Linux, Docker, and Kubernetes.",
+    title: "Stenstromen — Platform & Kubernetes",
+    description: siteDescription,
     url: "https://stenstromen.se",
     siteName: "Stenstromen",
     images: [
-      { url: "/og-image.png", width: 512, height: 512, alt: "Stenstromen's Portfolio" },
+      {
+        url: "/og-image.png",
+        width: 512,
+        height: 512,
+        alt: "Filip Stenström — platform engineer and Kubernetes practitioner",
+      },
     ],
   },
 };

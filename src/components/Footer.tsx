@@ -60,8 +60,17 @@ const footerLinks: FooterLink[] = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="w-full bg-[#2d3545] py-8">
+    <footer id="contact" className="w-full bg-[#2d3545] py-10">
       <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-semibold text-[#d8e2dc] mb-2">
+            Contact
+          </h2>
+          <p className="text-[#b8c4cf] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            Open to platform and DevOps conversations, collaborations, or a
+            quick hello — best reached via LinkedIn or email.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
           {footerLinks.map((link, index) => (
             <div key={index} className="w-full flex justify-center">

@@ -106,6 +106,15 @@ export default function Achievements({
   return (
     <div id="achievements" className="w-full py-12 bg-[#364055]">
       <div className="w-full px-4 sm:px-6 max-w-screen-2xl mx-auto">
+        <header className="mb-8 text-center max-w-2xl mx-auto px-2">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-[#d8e2dc] mb-2">
+            Certifications
+          </h2>
+          <p className="text-[#c8d0d8] text-sm sm:text-base leading-relaxed">
+            Linux Foundation and related credentials — Kubernetes operations,
+            security, GitOps with Argo, and infrastructure as code.
+          </p>
+        </header>
         <div className="relative w-full max-w-full overflow-hidden">
           <div
             className="overflow-hidden"
@@ -129,7 +138,7 @@ export default function Achievements({
                     rel="noopener noreferrer"
                     className="bg-[#2d3142] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105 shrink-0 w-64"
                   >
-                    <div className="p-4 flex flex-col items-center">
+                    <div className="p-4 flex flex-col items-center text-center">
                       {/* eslint-disable-next-line @next/next/no-img-element -- next/image uses blocked inline styles under style-src-attr */}
                       <img
                         src={badge.imageUrl.src}
@@ -140,6 +149,19 @@ export default function Achievements({
                         decoding="async"
                         className="object-contain mb-3 w-48 h-48"
                       />
+                      <p className="text-xs font-medium text-[#eceff1] leading-snug line-clamp-2 mb-1">
+                        {badge.name}
+                      </p>
+                      <p className="text-[11px] text-[#b0bcc8] mb-0.5">
+                        {badge.issuer}
+                      </p>
+                      <p className="text-[11px] text-[#8a96a3] tabular-nums">
+                        {new Date(badge.earnedDate).toLocaleDateString("en-GB", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </p>
                     </div>
                   </a>
                 ))}

@@ -16,18 +16,18 @@ describe("FirstPage", () => {
 
     const heading = container.querySelector("h1");
     const subheading = container.querySelector("h2");
-    const location = container.querySelector(
-      ".fade-in-left p",
-    );
-    const tagline = container.querySelector("h3");
+    const location = container.querySelector(".fade-in-left > p:last-of-type");
 
-    expect(heading).toHaveTextContent("Hello!");
-    expect(subheading).toHaveTextContent(/I'm Filip/);
-    expect(subheading).toHaveTextContent(
-      /DevOps by day, Programmer by passion/
-    );
+    expect(heading).toHaveTextContent(/Hello, I'm Filip/);
+    expect(subheading).toHaveTextContent(/Platform engineer/);
+    expect(subheading).toHaveTextContent(/Kubernetes/);
     expect(location).toHaveTextContent(/Based in Stockholm, Sweden/);
-    expect(tagline).toHaveTextContent(/I move fast and break things/);
+  });
+
+  it("renders focus area labels", () => {
+    const { getByText } = render(<FirstPage />);
+    expect(getByText("Kubernetes")).toBeTruthy();
+    expect(getByText("OpenTofu")).toBeTruthy();
   });
 
   it("renders with correct background colors and layout", () => {
@@ -43,7 +43,7 @@ describe("FirstPage", () => {
   it("includes ScrollToTop component", () => {
     const { container } = render(<FirstPage />);
     const scrollToTop = container.querySelector(
-      '[data-testid="scroll-to-top"]'
+      '[data-testid="scroll-to-top"]',
     );
     expect(scrollToTop).toBeTruthy();
   });

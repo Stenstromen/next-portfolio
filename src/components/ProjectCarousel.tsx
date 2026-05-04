@@ -143,8 +143,15 @@ export default function ProjectCarousel({
       </button>
 
       <div className="overflow-hidden">
-        <div className="flex flex-col items-center mb-4">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-4">
+        <header className="flex flex-col items-center text-center mb-6 px-2">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-[#d8e2dc] mb-2">
+            Projects
+          </h2>
+          <p className="text-[#c8d0d8] text-sm sm:text-base max-w-2xl leading-relaxed mb-4">
+            Open source tools, apps, and experiments — with a lean toward
+            Kubernetes, automation, and developer workflows.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
             {techFilters.map((filter, index) => (
               <button
                 key={index}
@@ -159,7 +166,7 @@ export default function ProjectCarousel({
               </button>
             ))}
           </div>
-        </div>
+        </header>
 
         <div
           className="flex transition-all duration-700 ease-in-out w-full"
