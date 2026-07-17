@@ -3,6 +3,7 @@ import FlareIP from "../img/flareip.svg";
 import FlareGHStats from "../img/flareghstats.webp";
 import bf2042ico from "../img/bf2042ico.webp";
 import bright from "../img/bright.webp";
+import cask from "../img/cask.webp";
 import detblevingencd from "../img/detblevingencd.webp";
 import dockerctx from "../img/dockerctx.webp";
 import doggate from "../img/doggate.webp";
@@ -111,13 +112,13 @@ const ProjectList: Project[] = [
     badges: [RUST, KUBERNETES],
   },
   {
-    image: nyancat,
-    title: "NyanCat",
+    image: cask,
+    title: "Cask",
     description:
-      "Nyancat for the terminal. Shamelessly stolen from github.com/klange/nyancat, but with a added telnet server.",
-    link: "https://github.com/Stenstromen/nyancat/releases/latest/",
-    github: "https://github.com/Stenstromen/nyancat",
-    badges: [C],
+      "Go CLI that asks Cloudflare Workers AI for shell/git command suggestions and quick technical answers, right from the terminal.",
+    link: "https://github.com/Stenstromen/cask",
+    github: "https://github.com/Stenstromen/cask",
+    badges: [GO, CLOUDFLARE],
   },
   {
     image: s3dbdump,
@@ -143,6 +144,15 @@ const ProjectList: Project[] = [
     link: "https://github.com/Stenstromen/outlinewikibackup",
     github: "https://github.com/Stenstromen/outlinewikibackup",
     badges: [GO, DOCKER],
+  },
+  {
+    image: nyancat,
+    title: "NyanCat",
+    description:
+      "Nyancat for the terminal. Shamelessly stolen from github.com/klange/nyancat, but with a added telnet server.",
+    link: "https://github.com/Stenstromen/nyancat/releases/latest/",
+    github: "https://github.com/Stenstromen/nyancat",
+    badges: [C],
   },
   {
     image: grumpypgp,
