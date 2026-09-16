@@ -38,6 +38,14 @@ export function middleware(request: NextRequest) {
   response.headers.set("X-Frame-Options", "DENY");
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("Referrer-Policy", "same-origin");
+  response.headers.set(
+    "Permissions-Policy",
+    "accelerometer=(), autoplay=(), bluetooth=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=(), browsing-topics=()",
+  );
+  response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  response.headers.set("Cross-Origin-Resource-Policy", "same-origin");
+  // credentialless keeps GA/Cloudflare beacons loading; require-corp would block them.
+  response.headers.set("Cross-Origin-Embedder-Policy", "credentialless");
   response.headers.set("x-nonce", nonce);
   response.headers.set(
     "Content-Security-Policy",
