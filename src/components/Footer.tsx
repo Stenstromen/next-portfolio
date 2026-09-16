@@ -60,45 +60,51 @@ const footerLinks: FooterLink[] = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="w-full bg-[#2d3545] py-10">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-semibold text-[#d8e2dc] mb-2">
+    <footer id="contact" className="w-full bg-canvas-2 border-t border-line py-16 sm:py-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="mb-10 max-w-2xl">
+          <p className="section-kicker mb-3">03 / Contact</p>
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-ink mb-3">
             Contact
           </h2>
-          <p className="text-[#b8c4cf] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          <p className="text-muted text-sm sm:text-base leading-relaxed">
             Open to platform and DevOps conversations, collaborations, or a
             quick hello — best reached via LinkedIn or email.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
-          {footerLinks.map((link, index) => (
-            <div key={index} className="w-full flex justify-center">
-              {link.isInternal ? (
-                <Link
-                  href={link.href}
-                  className="flex items-center gap-2 text-[#f686bd] hover:bg-[#f686bd]/10 px-4 py-2 rounded-md transition-colors duration-200"
-                  aria-label={link.ariaLabel}
-                >
-                  {link.icon}
-                  <span className="text-sm">{link.text}</span>
-                </Link>
-              ) : (
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-[#f686bd] hover:bg-[#f686bd]/10 px-4 py-2 rounded-md transition-colors duration-200"
-                  aria-label={link.ariaLabel}
-                >
-                  {link.icon}
-                  <span className="text-sm">{link.text}</span>
-                </a>
-              )}
-            </div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          {footerLinks.map((link, index) => {
+            const className =
+              "flex items-center gap-3 text-accent hover:text-ink hover:bg-accent/10 px-4 py-3 rounded-xl border border-line bg-surface transition-colors duration-200 w-full";
+
+            return (
+              <div key={index} className="w-full">
+                {link.isInternal ? (
+                  <Link
+                    href={link.href}
+                    className={className}
+                    aria-label={link.ariaLabel}
+                  >
+                    {link.icon}
+                    <span className="text-sm">{link.text}</span>
+                  </Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={className}
+                    aria-label={link.ariaLabel}
+                  >
+                    {link.icon}
+                    <span className="text-sm">{link.text}</span>
+                  </a>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </footer>
   );
-} 
+}

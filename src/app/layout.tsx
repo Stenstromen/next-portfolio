@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#2d3142",
+  themeColor: "#0c0f14",
 }
 
 const siteDescription =
@@ -61,11 +61,17 @@ export default async function RootLayout({
         <style nonce={nonce || undefined} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-canvas text-ink min-h-svh flex flex-col`}
         data-nonce={nonce}
       >
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-surface focus:px-3 focus:py-2"
+        >
+          Skip to content
+        </a>
         <Navbar />
-        <main>{children}</main>
+        <main id="main" className="flex-1">{children}</main>
         <Footer />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-835MSCWR7N"

@@ -4,6 +4,7 @@ import { TouchEvent, useEffect, useLayoutEffect, useRef } from "react";
 import type { StaticImageData } from "next/image";
 import achievements from "./achievementsData";
 import { formatIsoDateForDisplay } from "@/lib/formatIsoDate";
+import SectionHeader from "./SectionHeader";
 
 interface Badge {
   id: string;
@@ -105,18 +106,14 @@ export default function Achievements({
   };
 
   return (
-    <div id="achievements" className="w-full py-12 bg-[#364055]">
-      <div className="w-full px-4 sm:px-6 max-w-screen-2xl mx-auto">
-        <header className="mb-8 text-center max-w-2xl mx-auto px-2">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-[#d8e2dc] mb-2">
-            Certifications
-          </h2>
-          <p className="text-[#dce6ea] text-sm sm:text-base leading-relaxed">
-            Linux Foundation and related credentials — Kubernetes operations,
-            security, GitOps with Argo, and infrastructure as code.
-          </p>
-        </header>
-        <div className="relative w-full max-w-full overflow-hidden">
+    <div id="achievements" className="w-full py-20 sm:py-24 bg-canvas-2 border-y border-line">
+      <div className="w-full px-4 sm:px-6 max-w-6xl mx-auto">
+        <SectionHeader
+          index="01 / Credentials"
+          title="Certifications"
+          description="Linux Foundation and related credentials — Kubernetes operations, security, GitOps with Argo, and infrastructure as code."
+        />
+        <div className="relative w-full max-w-full overflow-hidden edge-fade">
           <div
             className="overflow-hidden"
             onMouseEnter={handleMouseEnter}
@@ -130,16 +127,16 @@ export default function Achievements({
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              <div className="flex gap-6 flex-nowrap">
+              <div className="flex gap-5 flex-nowrap">
                 {allBadges.map((badge, index) => (
                   <a
                     key={`${badge.id}-${index}`}
                     href={badge.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#2d3142] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105 shrink-0 w-64"
+                    className="bg-surface rounded-xl overflow-hidden border border-line hover:border-accent/40 transition-colors shrink-0 w-60"
                   >
-                    <div className="p-4 flex flex-col items-center text-center">
+                    <div className="p-5 flex flex-col items-center text-center">
                       {/* eslint-disable-next-line @next/next/no-img-element -- next/image uses blocked inline styles under style-src-attr */}
                       <img
                         src={badge.imageUrl.src}
@@ -148,15 +145,15 @@ export default function Achievements({
                         height={192}
                         loading="lazy"
                         decoding="async"
-                        className="object-contain mb-3 w-48 h-48"
+                        className="object-contain mb-4 w-40 h-40"
                       />
-                      <p className="text-xs font-medium text-[#f2f6f4] leading-snug line-clamp-2 mb-1">
+                      <p className="text-sm font-medium text-ink leading-snug line-clamp-2 mb-1">
                         {badge.name}
                       </p>
-                      <p className="text-xs text-[#d8e2dc] mb-0.5">
+                      <p className="text-xs text-muted mb-0.5">
                         {badge.issuer}
                       </p>
-                      <p className="text-xs text-[#d0dadf] tabular-nums">
+                      <p className="text-xs text-subtle tabular-nums font-mono">
                         {formatIsoDateForDisplay(badge.earnedDate)}
                       </p>
                     </div>

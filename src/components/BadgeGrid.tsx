@@ -33,11 +33,12 @@ export default function BadgeGrid({ nonce }: BadgeGridProps) {
   return (
     <div
       data-testid="badge-grid"
-      className="bg-[#f686bd] p-6 rounded-3xl shadow-lg transition-all hover:scale-[1.01]"
+      data-nonce={nonce}
+      className="bg-surface p-6 rounded-2xl border border-line shadow-lg transition-colors hover:border-accent/35"
     >
       {!showAllBadges && (
-        <h2 data-testid="ninja-icon" className="text-2xl font-bold mb-4">
-          🥷
+        <h2 data-testid="ninja-icon" className="text-sm font-mono uppercase tracking-widest text-accent mb-4">
+          Stack
         </h2>
       )}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -58,9 +59,9 @@ export default function BadgeGrid({ nonce }: BadgeGridProps) {
         <button
           data-testid="show-more-badges"
           onClick={() => setShowAllBadges(true)}
-          className="mt-4 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+          className="mt-4 px-4 py-2 bg-canvas text-ink border border-line rounded-lg hover:border-accent/50 transition-colors text-sm"
         >
-          What else? 🤔
+          Show all
         </button>
       )}
     </div>

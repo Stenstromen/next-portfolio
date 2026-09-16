@@ -158,9 +158,9 @@ describe("Achievements", () => {
     const badgeContainers = container.querySelectorAll("a");
 
     badgeContainers.forEach((container) => {
-      expect(container.className).toContain("bg-[#2d3142]");
-      expect(container.className).toContain("rounded-lg");
-      expect(container.className).toContain("hover:scale-105");
+      expect(container.className).toContain("bg-surface");
+      expect(container.className).toContain("rounded-xl");
+      expect(container.className).toContain("hover:border-accent/40");
     });
   });
 

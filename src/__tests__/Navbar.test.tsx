@@ -28,10 +28,8 @@ describe("Navbar", () => {
 
     const nav = container.querySelector("nav");
     expect(nav).toBeTruthy();
-    const bar = nav?.firstElementChild;
-    expect(bar?.className).toContain("bg-[#2d3142]");
-    expect(bar?.className).toContain("rounded-b-2xl");
-    expect(bar?.className).toContain("sm:rounded-b-3xl");
+    expect(nav?.className).toContain("bg-canvas/90");
+    expect(nav?.className).toContain("backdrop-blur-xl");
 
     const homeButton = container.querySelector("button");
     expect(homeButton?.textContent).toBe("Home");
@@ -69,7 +67,7 @@ describe("Navbar", () => {
       await new Promise((resolve) => setTimeout(resolve, 50));
     });
 
-    expect(nav?.firstElementChild?.className).toContain("bg-[#2d3142]");
+    expect(nav?.className).toContain("bg-canvas/90");
   });
 
   it("handles section navigation on home page", () => {
@@ -111,11 +109,10 @@ describe("Navbar", () => {
 
     const buttons = container.querySelectorAll("button");
     buttons.forEach((button) => {
-      expect(button.className).toContain("text-[#d8e2dc]");
-      expect(button.className).toContain("hover:text-white");
+      expect(button.className).toContain("text-muted");
+      expect(button.className).toContain("hover:text-ink");
       expect(button.className).toContain("transition-colors");
       expect(button.className).toMatch(/text-sm/);
-      expect(button.className).toMatch(/md:text-2xl/);
     });
   });
 });

@@ -30,14 +30,13 @@ describe("FirstPage", () => {
     expect(getByText("OpenTofu")).toBeTruthy();
   });
 
-  it("renders with correct background colors and layout", () => {
+  it("renders with a full-height hero layout", () => {
     const { container } = render(<FirstPage />);
 
     const mainContainer = container.querySelector("#home");
-    const contentCard = container.querySelector(".bg-\\[\\#2d3142\\]");
 
-    expect(mainContainer?.className).toContain("bg-[#4f5d75]");
-    expect(contentCard).toBeTruthy();
+    expect(mainContainer?.className).toContain("page-grid");
+    expect(mainContainer?.className).toContain("min-h-[100svh]");
   });
 
   it("includes ScrollToTop component", () => {
@@ -51,14 +50,14 @@ describe("FirstPage", () => {
   it("uses constrained width wrapper for hero content", () => {
     const { container } = render(<FirstPage />);
 
-    const wrapper = container.querySelector("#home .max-w-7xl");
+    const wrapper = container.querySelector("#home .max-w-6xl");
     expect(wrapper).toBeTruthy();
   });
 
-  it("applies hover animation class to main content card", () => {
+  it("renders a highlights panel", () => {
     const { container } = render(<FirstPage />);
 
-    const contentCard = container.querySelector(".hover\\:scale-\\[1\\.01\\]");
-    expect(contentCard).toBeTruthy();
+    const highlights = container.querySelector("aside.hero-panel");
+    expect(highlights).toBeTruthy();
   });
 });

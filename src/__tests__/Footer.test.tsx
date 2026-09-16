@@ -70,7 +70,7 @@ describe("Footer", () => {
     // Test footer container
     const footer = container.querySelector("footer");
     expect(footer).toBeTruthy();
-    expect(footer?.className).toContain("bg-[#2d3545]");
+    expect(footer?.className).toContain("bg-canvas-2");
     expect(footer?.id).toBe("contact");
 
     // Test grid layout
@@ -93,7 +93,7 @@ describe("Footer", () => {
 
     const links = container.querySelectorAll("a");
     links.forEach((link) => {
-      expect(link.className).toContain("hover:bg-[#f686bd]/10");
+      expect(link.className).toContain("hover:bg-accent/10");
       expect(link.className).toContain("transition-colors");
     });
   });
@@ -103,7 +103,7 @@ describe("Footer", () => {
 
     const links = container.querySelectorAll("a");
     links.forEach((link) => {
-      expect(link.className).toContain("text-[#f686bd]");
+      expect(link.className).toContain("text-accent");
     });
   });
 
@@ -111,14 +111,14 @@ describe("Footer", () => {
     const { container } = render(<Footer />);
 
     const linkContainers = container.querySelectorAll(
-      ".flex.items-center.gap-2"
+      ".flex.items-center.gap-3"
     );
     expect(linkContainers.length).toBe(6);
 
     linkContainers.forEach((container) => {
       expect(container.className).toContain("px-4");
-      expect(container.className).toContain("py-2");
-      expect(container.className).toContain("rounded-md");
+      expect(container.className).toContain("py-3");
+      expect(container.className).toContain("rounded-xl");
     });
   });
 });
