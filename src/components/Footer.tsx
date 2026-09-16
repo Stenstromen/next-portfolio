@@ -15,46 +15,39 @@ interface FooterLink {
   text: string;
   href: string;
   isInternal?: boolean;
-  ariaLabel: string;
 }
 
 const footerLinks: FooterLink[] = [
   {
-    icon: <FaLinkedin className="w-6 h-6" />,
+    icon: <FaLinkedin className="w-6 h-6" aria-hidden />,
     text: "Add Me On LinkedIn!",
     href: "https://www.linkedin.com/in/filip-stenstr%C3%B6m/",
-    ariaLabel: "LinkedIn Profile"
   },
   {
-    icon: <FaMastodon className="w-6 h-6" />,
+    icon: <FaMastodon className="w-6 h-6" aria-hidden />,
     text: "Follow me on Mastodon!",
     href: "https://k8s.social/@stenstromen",
-    ariaLabel: "Mastodon Profile"
   },
   {
-    icon: <FaGithub className="w-6 h-6" />,
+    icon: <FaGithub className="w-6 h-6" aria-hidden />,
     text: "Follow Me On GitHub!",
     href: "https://github.com/Stenstromen",
-    ariaLabel: "GitHub Profile"
   },
   {
-    icon: <FaEnvelope className="w-6 h-6" />,
+    icon: <FaEnvelope className="w-6 h-6" aria-hidden />,
     text: "Send Me An Email!",
     href: "mailto:info@stenstromen.se?subject=Hello!&body=Hello,%20friend.%0A%0AI%20would%20like%20to%20ask%20you...",
-    ariaLabel: "Send Email"
   },
   {
-    icon: <FaKey className="w-6 h-6" />,
+    icon: <FaKey className="w-6 h-6" aria-hidden />,
     text: "Fetch My Public PGP Key!",
     href: "/pgp",
     isInternal: true,
-    ariaLabel: "PGP Public Key"
   },
   {
-    icon: <FaCircle className="w-6 h-6" />,
+    icon: <FaCircle className="w-6 h-6" aria-hidden />,
     text: "Atlassian Statuspage Uptime",
     href: "https://stenstromen.statuspage.io/",
-    ariaLabel: "Status Page"
   }
 ];
 
@@ -80,11 +73,7 @@ export default function Footer() {
             return (
               <div key={index} className="w-full">
                 {link.isInternal ? (
-                  <Link
-                    href={link.href}
-                    className={className}
-                    aria-label={link.ariaLabel}
-                  >
+                  <Link href={link.href} className={className}>
                     {link.icon}
                     <span className="text-sm">{link.text}</span>
                   </Link>
@@ -94,7 +83,6 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     className={className}
-                    aria-label={link.ariaLabel}
                   >
                     {link.icon}
                     <span className="text-sm">{link.text}</span>

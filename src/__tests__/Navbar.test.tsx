@@ -43,7 +43,7 @@ describe("Navbar", () => {
     expect(buttons.length).toBe(4);
 
     expect(buttons[0].textContent).toBe("Home");
-    expect(buttons[1].getAttribute("aria-label")).toBe("Certifications");
+    expect(buttons[1].getAttribute("aria-label")).toBe("Certs, Certifications");
     expect(buttons[2].textContent).toBe("Projects");
     expect(buttons[3].textContent).toBe("Contact");
   });

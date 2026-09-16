@@ -30,7 +30,14 @@ export default function ProjectCard({
   return (
     <div className="group relative bg-surface rounded-xl border border-line p-3.5 transition-colors duration-300 hover:border-accent/35 h-full flex flex-col">
       <div className="aspect-square w-full overflow-hidden rounded-lg mb-4 border border-line/80 bg-canvas">
-        <a href={link} target="_blank" rel="noreferrer" className="block h-full">
+        <a
+          href={link}
+          target="_blank"
+          rel="noreferrer"
+          className="block h-full"
+          tabIndex={-1}
+          aria-hidden
+        >
           <img
             src={typeof image === "string" ? image : image.src}
             alt={title}
@@ -54,15 +61,14 @@ export default function ProjectCard({
         ))}
       </div>
 
-      <div className="flex items-center gap-4 mt-auto flex-wrap">
+      <div className="flex items-center gap-3 mt-auto flex-wrap">
         <a
           href={link}
           target="_blank"
           rel="noreferrer"
-          className="text-sm font-medium text-accent hover:text-ink transition-colors underline-offset-4 hover:underline"
-          aria-label={`Open live demo or site for ${title}`}
+          className="inline-flex items-center min-h-11 px-1 text-sm font-medium text-accent hover:text-ink transition-colors underline-offset-4 hover:underline"
         >
-          Demo
+          Demo<span className="sr-only"> for {title}</span>
         </a>
 
         {github && (
@@ -70,11 +76,10 @@ export default function ProjectCard({
             href={github}
             target="_blank"
             rel="noreferrer"
-            className="text-sm font-medium text-muted hover:text-ink transition-colors inline-flex items-center gap-1.5"
-            aria-label={`View source code for ${title} on GitHub`}
+            className="inline-flex items-center min-h-11 px-1 gap-1.5 text-sm font-medium text-muted hover:text-ink transition-colors"
           >
             <FaGithub className="w-4 h-4 shrink-0" aria-hidden />
-            Source
+            Source<span className="sr-only"> for {title} on GitHub</span>
           </a>
         )}
       </div>

@@ -41,8 +41,9 @@ export default function PGP() {
               {pgp || 'Loading PGP key...'}
             </pre>
             <button
+              type="button"
               onClick={handleCopy}
-              className="bg-accent text-canvas px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent/90 transition-colors"
+              className="bg-accent text-canvas px-4 min-h-11 rounded-full text-sm font-semibold hover:bg-accent/90 transition-colors"
             >
               Copy to clipboard
             </button>

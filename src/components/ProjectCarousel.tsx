@@ -121,13 +121,15 @@ export default function ProjectCarousel({
       <div className="flex flex-wrap gap-2 mb-8">
         {techFilters.map((filter, index) => (
           <button
+            type="button"
             key={index}
             onClick={() => handleFilterChange(filter)}
-            className={`px-3 py-1.5 text-sm rounded-full transition-colors font-medium ${
+            className={`inline-flex items-center px-4 min-h-11 text-sm rounded-full transition-colors font-medium ${
               activeFilter === filter
                 ? "bg-accent text-canvas"
                 : "bg-surface text-ink border border-line hover:border-accent/40"
             }`}
+            aria-pressed={activeFilter === filter}
           >
             {filter}
           </button>
@@ -143,36 +145,52 @@ export default function ProjectCarousel({
         ))}
       </div>
 
-      <div className="flex justify-center items-center gap-4 mt-8">
+      <div className="flex justify-center items-center gap-2 mt-8">
         <button
+          type="button"
           onClick={prevPage}
           disabled={safePage === 0}
-          className="w-10 h-10 flex items-center justify-center rounded-full border border-line bg-surface text-ink hover:border-accent/50 hover:text-accent transition-colors disabled:opacity-30 disabled:pointer-events-none"
+          className="w-11 h-11 flex items-center justify-center rounded-full border border-line bg-surface text-ink hover:border-accent/50 hover:text-accent transition-colors disabled:opacity-30 disabled:pointer-events-none"
           aria-label="Previous page"
         >
-          <IoChevronBackOutline className="w-5 h-5" />
+          <IoChevronBackOutline className="w-5 h-5" aria-hidden />
         </button>
-        <div className="flex justify-center gap-2">
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageClick(index)}
-              className={`h-2 rounded-full transition-all ${
-                safePage === index
-                  ? "w-6 bg-accent"
-                  : "w-2 bg-line hover:bg-muted"
-              }`}
-              aria-label={`Go to page ${index + 1}`}
-            />
-          ))}
-        </div>
+        {totalPages <= 8 ? (
+          <div className="flex justify-center">
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <button
+                type="button"
+                key={index}
+                onClick={() => handlePageClick(index)}
+                className="flex items-center justify-center min-w-11 min-h-11"
+                aria-label={`Go to page ${index + 1}`}
+                aria-current={safePage === index ? "page" : undefined}
+              >
+                <span
+                  className={`h-2.5 rounded-full transition-all ${
+                    safePage === index ? "w-6 bg-accent" : "w-2.5 bg-muted"
+                  }`}
+                  aria-hidden
+                />
+              </button>
+            ))}
+          </div>
+        ) : (
+          <p
+            className="min-w-20 text-center text-sm text-muted tabular-nums"
+            aria-live="polite"
+          >
+            {safePage + 1} / {totalPages}
+          </p>
+        )}
         <button
+          type="button"
           onClick={nextPage}
           disabled={safePage === totalPages - 1}
-          className="w-10 h-10 flex items-center justify-center rounded-full border border-line bg-surface text-ink hover:border-accent/50 hover:text-accent transition-colors disabled:opacity-30 disabled:pointer-events-none"
+          className="w-11 h-11 flex items-center justify-center rounded-full border border-line bg-surface text-ink hover:border-accent/50 hover:text-accent transition-colors disabled:opacity-30 disabled:pointer-events-none"
           aria-label="Next page"
         >
-          <IoChevronForwardOutline className="w-5 h-5" />
+          <IoChevronForwardOutline className="w-5 h-5" aria-hidden />
         </button>
       </div>
     </div>

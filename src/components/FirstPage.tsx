@@ -74,14 +74,14 @@ export default function FirstPage({ nonce }: FirstPageProps) {
               <button
                 type="button"
                 onClick={() => scrollTo("projects")}
-                className="inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-canvas hover:bg-accent/90 transition-colors"
+                className="inline-flex items-center min-h-11 rounded-full bg-accent px-5 text-sm font-semibold text-canvas hover:bg-accent/90 transition-colors"
               >
                 View projects
               </button>
               <button
                 type="button"
                 onClick={() => scrollTo("contact")}
-                className="inline-flex items-center rounded-full border border-line bg-transparent px-5 py-2.5 text-sm font-semibold text-ink hover:border-accent/50 hover:text-accent transition-colors"
+                className="inline-flex items-center min-h-11 rounded-full border border-line bg-transparent px-5 text-sm font-semibold text-ink hover:border-accent/50 hover:text-accent transition-colors"
               >
                 Get in touch
               </button>

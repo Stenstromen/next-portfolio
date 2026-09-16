@@ -39,12 +39,16 @@ export const metadata: Metadata = {
     siteName: "Stenstromen",
     images: [
       {
-        url: "/og-image.png",
-        width: 512,
-        height: 512,
-        alt: "Filip Stenström — platform engineer and Kubernetes practitioner",
+        url: "/tux-bimi.png",
+        width: 1200,
+        height: 1200,
+        alt: "Tux — Stenstromen BIMI mark",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/tux-bimi.png"],
   },
 };
 
@@ -66,7 +70,7 @@ export default async function RootLayout({
       >
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-surface focus:px-3 focus:py-2"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:inline-flex focus:items-center focus:min-h-11 focus:rounded-md focus:bg-surface focus:px-4"
         >
           Skip to content
         </a>

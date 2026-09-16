@@ -57,9 +57,10 @@ export default function BadgeGrid({ nonce }: BadgeGridProps) {
 
       {!showAllBadges && (
         <button
+          type="button"
           data-testid="show-more-badges"
           onClick={() => setShowAllBadges(true)}
-          className="mt-4 px-4 py-2 bg-canvas text-ink border border-line rounded-lg hover:border-accent/50 transition-colors text-sm"
+          className="mt-4 px-4 min-h-11 bg-canvas text-ink border border-line rounded-lg hover:border-accent/50 transition-colors text-sm"
         >
           Show all
         </button>

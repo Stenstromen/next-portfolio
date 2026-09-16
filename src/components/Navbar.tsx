@@ -19,19 +19,18 @@ export default function Navbar() {
   };
 
   const linkClass =
-    "text-muted hover:text-ink transition-colors text-sm sm:text-base font-medium px-1.5 sm:px-2 py-1";
+    "text-muted hover:text-ink transition-colors text-sm sm:text-base font-medium inline-flex items-center min-h-9 sm:min-h-11 px-2 sm:px-3";
 
   return (
     <nav className="fixed top-0 inset-x-0 z-50 border-b border-line/80 bg-canvas">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:px-6">
         <Link
           href="/"
-          className="font-mono text-sm sm:text-base tracking-tight text-ink hover:text-accent transition-colors shrink-0"
-          aria-label="Stenstromen home"
+          className="font-mono text-sm sm:text-base tracking-tight text-ink hover:text-accent transition-colors shrink-0 inline-flex items-center min-h-9 sm:min-h-11"
         >
           stenstromen
         </Link>
-        <div className="flex flex-wrap justify-end items-center gap-x-1 gap-y-1 sm:gap-x-4">
+        <div className="flex flex-nowrap justify-end items-center gap-x-0.5 sm:gap-x-2">
           <button
             type="button"
             onClick={() => scrollToSection("home")}
@@ -45,7 +44,7 @@ export default function Navbar() {
                 type="button"
                 onClick={() => scrollToSection("achievements")}
                 className={linkClass}
-                aria-label="Certifications"
+                aria-label="Certs, Certifications"
               >
                 <span className="sm:hidden">Certs</span>
                 <span className="hidden sm:inline">Certifications</span>

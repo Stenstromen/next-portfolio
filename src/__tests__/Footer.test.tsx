@@ -13,7 +13,7 @@ describe("Footer", () => {
     expect(linkedinLink).toBeTruthy();
     expect(linkedinLink).toHaveAttribute("target", "_blank");
     expect(linkedinLink).toHaveAttribute("rel", "noreferrer");
-    expect(linkedinLink).toHaveAttribute("aria-label", "LinkedIn Profile");
+    expect(linkedinLink).not.toHaveAttribute("aria-label");
     expect(linkedinLink?.textContent).toContain("Add Me On LinkedIn!");
 
     // Test Mastodon link
@@ -23,7 +23,7 @@ describe("Footer", () => {
     expect(mastodonLink).toBeTruthy();
     expect(mastodonLink).toHaveAttribute("target", "_blank");
     expect(mastodonLink).toHaveAttribute("rel", "noreferrer");
-    expect(mastodonLink).toHaveAttribute("aria-label", "Mastodon Profile");
+    expect(mastodonLink).not.toHaveAttribute("aria-label");
     expect(mastodonLink?.textContent).toContain("Follow me on Mastodon!");
 
     // Test GitHub link
@@ -33,7 +33,7 @@ describe("Footer", () => {
     expect(githubLink).toBeTruthy();
     expect(githubLink).toHaveAttribute("target", "_blank");
     expect(githubLink).toHaveAttribute("rel", "noreferrer");
-    expect(githubLink).toHaveAttribute("aria-label", "GitHub Profile");
+    expect(githubLink).not.toHaveAttribute("aria-label");
     expect(githubLink?.textContent).toContain("Follow Me On GitHub!");
 
     // Test Email link
@@ -43,14 +43,14 @@ describe("Footer", () => {
     expect(emailLink).toBeTruthy();
     expect(emailLink).toHaveAttribute("target", "_blank");
     expect(emailLink).toHaveAttribute("rel", "noreferrer");
-    expect(emailLink).toHaveAttribute("aria-label", "Send Email");
+    expect(emailLink).not.toHaveAttribute("aria-label");
     expect(emailLink?.textContent).toContain("Send Me An Email!");
 
     // Test PGP Key link (internal)
     const pgpLink = container.querySelector('a[href="/pgp"]');
     expect(pgpLink).toBeTruthy();
     expect(pgpLink).not.toHaveAttribute("target"); // Internal link shouldn't have target="_blank"
-    expect(pgpLink).toHaveAttribute("aria-label", "PGP Public Key");
+    expect(pgpLink).not.toHaveAttribute("aria-label");
     expect(pgpLink?.textContent).toContain("Fetch My Public PGP Key!");
 
     // Test Status Page link
@@ -60,7 +60,7 @@ describe("Footer", () => {
     expect(statusLink).toBeTruthy();
     expect(statusLink).toHaveAttribute("target", "_blank");
     expect(statusLink).toHaveAttribute("rel", "noreferrer");
-    expect(statusLink).toHaveAttribute("aria-label", "Status Page");
+    expect(statusLink).not.toHaveAttribute("aria-label");
     expect(statusLink?.textContent).toContain("Atlassian Statuspage Uptime");
   });
 
