@@ -4,7 +4,6 @@ import { render, fireEvent, act } from "@testing-library/react";
 import Achievements from "../components/Achievements";
 import { StaticImageData } from "next/image";
 
-// Mock next/image
 vi.mock("next/image", () => ({
   __esModule: true,
   default: ({ src, alt }: { src: StaticImageData; alt: string }) => (
@@ -12,31 +11,35 @@ vi.mock("next/image", () => ({
   ),
 }));
 
-// Mock requestAnimationFrame
-let lastTimestamp = 0;
-vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
-  const timestamp = lastTimestamp + 16; // Simulate 16ms frame
-  lastTimestamp = timestamp;
-  return setTimeout(() => callback(timestamp), 0);
-});
+class MockIntersectionObserver {
+  callback: IntersectionObserverCallback;
 
-// Mock cancelAnimationFrame
-vi.stubGlobal('cancelAnimationFrame', (id: number) => {
-  clearTimeout(id);
-});
+  constructor(callback: IntersectionObserverCallback) {
+    this.callback = callback;
+  }
 
-// Mock getBoundingClientRect
-const mockGetBoundingClientRect = () => ({
-  width: 100,
-  height: 100,
-  top: 0,
-  left: 0,
-  bottom: 0,
-  right: 0,
-  x: 0,
-  y: 0,
-  toJSON: () => {},
-});
+  observe(target: Element) {
+    this.callback(
+      [
+        {
+          isIntersecting: true,
+          target,
+        } as IntersectionObserverEntry,
+      ],
+      this as unknown as IntersectionObserver,
+    );
+  }
+
+  unobserve() {}
+  disconnect() {}
+  takeRecords(): IntersectionObserverEntry[] {
+    return [];
+  }
+
+  root = null;
+  rootMargin = "";
+  thresholds = [];
+}
 
 describe("Achievements", () => {
   const mockBadges = [
@@ -60,10 +63,12 @@ describe("Achievements", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
   });
 
   afterEach(() => {
     vi.clearAllMocks();
+    vi.unstubAllGlobals();
   });
 
   it("renders with default badges when none provided", () => {
@@ -80,77 +85,47 @@ describe("Achievements", () => {
 
   it("pauses scrolling on mouse enter", async () => {
     const { container } = render(<Achievements />);
-    const scrollContainer = container.querySelector(".overflow-hidden");
+    const scrollContainer = container.querySelector(".achievements-marquee");
 
     await act(async () => {
       fireEvent.mouseEnter(scrollContainer!);
-      await new Promise((resolve) => setTimeout(resolve, 50));
     });
 
-    const scrollDiv = container.querySelector(".flex") as HTMLElement;
-    const initialScroll = scrollDiv?.style.getPropertyValue("--achievements-scroll");
-
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    });
-
-    expect(scrollDiv?.style.getPropertyValue("--achievements-scroll")).toBe(initialScroll);
+    const track = container.querySelector(".achievements-marquee-track");
+    expect(track?.className).toContain("is-paused");
   });
 
   it("resumes scrolling on mouse leave", async () => {
     const { container } = render(<Achievements />);
-    const scrollContainer = container.querySelector('.overflow-hidden');
-    const scrollDiv = container.querySelector('.flex') as HTMLElement;
-    
-    // Mock scrollWidth for the scroll container
-    Object.defineProperty(scrollDiv, 'scrollWidth', {
-      value: 2000,
-      writable: true
-    });
-    
-    // Mock getBoundingClientRect for the scroll container
-    vi.spyOn(scrollDiv, 'getBoundingClientRect').mockImplementation(mockGetBoundingClientRect);
-    
+    const scrollContainer = container.querySelector(".achievements-marquee");
+    const track = container.querySelector(".achievements-marquee-track");
+
     await act(async () => {
       fireEvent.mouseEnter(scrollContainer!);
-      await new Promise(resolve => setTimeout(resolve, 50));
     });
+    expect(track?.className).toContain("is-paused");
 
-    const initialScroll = scrollDiv.style.getPropertyValue("--achievements-scroll");
-    
     await act(async () => {
       fireEvent.mouseLeave(scrollContainer!);
-      // Wait for animation frame to update
-      await new Promise(resolve => setTimeout(resolve, 50));
     });
-
-    expect(scrollDiv.style.getPropertyValue("--achievements-scroll")).not.toBe(initialScroll);
-    expect(scrollDiv.style.getPropertyValue("--achievements-scroll")).toMatch(/\d+(\.\d+)?px/);
+    expect(track?.className).not.toContain("is-paused");
   });
 
   it("handles touch events correctly", async () => {
     const { container } = render(<Achievements />);
-    const scrollDiv = container.querySelector(".flex") as HTMLElement;
+    const track = container.querySelector(
+      ".achievements-marquee-track",
+    ) as HTMLElement;
 
-    // Touch start
     await act(async () => {
-      fireEvent.touchStart(scrollDiv!, {
-        targetTouches: [{ clientX: 100 }],
-      });
-      await new Promise((resolve) => setTimeout(resolve, 50));
+      fireEvent.touchStart(track);
     });
+    expect(track.className).toContain("is-paused");
 
-    const initialScroll = scrollDiv?.style.getPropertyValue("--achievements-scroll");
-
-    // Touch move
     await act(async () => {
-      fireEvent.touchMove(scrollDiv!, {
-        targetTouches: [{ clientX: 50 }],
-      });
-      await new Promise((resolve) => setTimeout(resolve, 50));
+      fireEvent.touchEnd(track);
     });
-
-    expect(scrollDiv?.style.getPropertyValue("--achievements-scroll")).not.toBe(initialScroll);
+    expect(track.className).not.toContain("is-paused");
   });
 
   it("applies correct styling to badge containers", () => {
@@ -180,7 +155,6 @@ describe("Achievements", () => {
     const badges = container.querySelectorAll("a");
     expect(badges.length).toBe(mockBadges.length * 2);
 
-    // Verify the badges are duplicated in order
     Array.from(badges).forEach((badge, index) => {
       const expectedIndex = index % mockBadges.length;
       const img = badge.querySelector("img");

@@ -38,7 +38,7 @@ export default function FirstPage({ nonce }: FirstPageProps) {
     <div
       id="home"
       data-nonce={nonce}
-      className="page-grid relative overflow-x-hidden min-h-[100svh]"
+      className="page-grid relative overflow-x-clip min-h-[100svh]"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 sm:pt-32 sm:pb-24">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] lg:gap-16 items-center">

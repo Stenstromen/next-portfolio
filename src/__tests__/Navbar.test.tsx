@@ -28,8 +28,8 @@ describe("Navbar", () => {
 
     const nav = container.querySelector("nav");
     expect(nav).toBeTruthy();
-    expect(nav?.className).toContain("bg-canvas/90");
-    expect(nav?.className).toContain("backdrop-blur-xl");
+    expect(nav?.className).toContain("bg-canvas");
+    expect(nav?.className).not.toContain("backdrop-blur");
 
     const homeButton = container.querySelector("button");
     expect(homeButton?.textContent).toBe("Home");
@@ -67,7 +67,7 @@ describe("Navbar", () => {
       await new Promise((resolve) => setTimeout(resolve, 50));
     });
 
-    expect(nav?.className).toContain("bg-canvas/90");
+    expect(nav?.className).toContain("bg-canvas");
   });
 
   it("handles section navigation on home page", () => {
