@@ -22,7 +22,7 @@ export default function Navbar() {
     "text-muted hover:text-ink transition-colors text-sm sm:text-base font-medium px-1.5 sm:px-2 py-1";
 
   return (
-    <nav className="fixed top-0 inset-x-0 z-50 border-b border-line/80 bg-canvas/90 backdrop-blur-xl">
+    <nav className="fixed top-0 inset-x-0 z-50 border-b border-line/80 bg-canvas">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
         <Link
           href="/"
