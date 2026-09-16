@@ -29,14 +29,14 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed right-4 bottom-4 z-50 w-14 h-14 flex items-center justify-center cursor-pointer transition-opacity duration-300
+      className={`fixed right-4 bottom-4 z-50 w-12 h-12 rounded-full border border-line bg-surface/90 flex items-center justify-center cursor-pointer transition-opacity duration-300 hover:border-accent/50
         ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
       aria-label="Scroll to top"
     >
       <TbSquareArrowUpFilled
         className="transition-none pink"
-        size={55}
+        size={28}
       />
     </button>
   );
-} 
+}

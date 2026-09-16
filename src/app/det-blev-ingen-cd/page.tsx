@@ -11,8 +11,8 @@ function DetBlevIngenCD() {
   const [openSection, setOpenSection] = useState(0);
 
   return (
-    <div className="min-h-screen bg-[#4f5d75]/80 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="bg-[#4f5d75]/80 mx-[10%] my-[2%] overflow-x-hidden transform transition-all duration-1000 ease-in-out">
+    <div className="min-h-screen bg-canvas page-grid py-24 px-4 sm:px-6 lg:px-8">
+      <div className="surface-card max-w-3xl mx-auto rounded-2xl overflow-x-hidden">
         <div className="divide-y divide-gray-200">
           {/* Section 1 - Lokaltidningsbesvikelse */}
           <div className="border-b border-gray-200">

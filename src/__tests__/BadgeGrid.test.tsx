@@ -13,10 +13,10 @@ test("renders the grid container with correct styling", () => {
   render(<BadgeGrid />);
 
   const gridContainer = screen.getByTestId("badge-grid");
-  expect(gridContainer).toHaveClass("bg-[#f686bd]");
+  expect(gridContainer).toHaveClass("bg-surface");
   expect(gridContainer).toHaveClass("p-6");
-  expect(gridContainer).toHaveClass("rounded-3xl");
-  expect(gridContainer).toHaveClass("shadow-lg");
+  expect(gridContainer).toHaveClass("rounded-2xl");
+  expect(gridContainer).toHaveClass("border");
 });
 
 test("renders the ninja icon", () => {

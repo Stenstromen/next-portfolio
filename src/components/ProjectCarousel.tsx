@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import type { Project } from "./ProjectList";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
+import SectionHeader from "./SectionHeader";
 
 interface ProjectCarouselProps {
   projects: Project[];
@@ -16,11 +17,9 @@ export default function ProjectCarousel({
   projects,
   itemsPerRow = 4,
   rows = 2,
-  nonce,
 }: ProjectCarouselProps) {
   const [currentPage, setCurrentPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [inlineStyle, setInlineStyle] = useState<{ [key: string]: string }>({});
   const [autoPlay, setAutoPlay] = useState(true);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
   const [activeFilter, setActiveFilter] = useState("All");
@@ -37,13 +36,18 @@ export default function ProjectCarousel({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    setInlineStyle({ transform: `translateX(-${currentPage * 100}%)` });
-  }, [currentPage]);
-
   const mobileItemsPerRow = 1;
   const itemsPerPage = isMobile ? mobileItemsPerRow * 2 : itemsPerRow * rows;
-  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredProjects.length / itemsPerPage),
+  );
+  const safePage = Math.min(currentPage, totalPages - 1);
+  const startIndex = safePage * itemsPerPage;
+  const pageProjects = filteredProjects.slice(
+    startIndex,
+    startIndex + itemsPerPage,
+  );
 
   const nextPage = useCallback(() => {
     setAutoPlay(false);
@@ -60,28 +64,14 @@ export default function ProjectCarousel({
     setCurrentPage(index);
   };
 
-  const getVisiblePages = useCallback(
-    (currentPageIndex: number) => {
-      const pagesToShow = new Set([
-        currentPageIndex - 1,
-        currentPageIndex,
-        currentPageIndex + 1,
-      ]);
-
-      return Array.from({ length: totalPages }).map((_, pageIndex) => {
-        if (!pagesToShow.has(pageIndex)) return null;
-
-        const startIndex = pageIndex * itemsPerPage;
-        return filteredProjects.slice(startIndex, startIndex + itemsPerPage);
-      });
-    },
-    [itemsPerPage, totalPages, filteredProjects],
-  );
-
-  const visiblePages = getVisiblePages(currentPage);
+  useEffect(() => {
+    if (currentPage >= totalPages) {
+      setCurrentPage(0);
+    }
+  }, [currentPage, totalPages]);
 
   useEffect(() => {
-    if (!autoPlay) return;
+    if (!autoPlay || totalPages <= 1) return;
 
     const switchPage = () => {
       setCurrentPage((prev) => (prev + 1) % totalPages);
@@ -122,88 +112,68 @@ export default function ProjectCarousel({
   };
 
   return (
-    <div id="projects" className="relative w-full max-w-full overflow-hidden">
-      <button
-        onClick={prevPage}
-        className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 p-4 bg-[#c94986] text-white rounded-lg hover:bg-[#b83d78] transition-colors w-12 h-48 flex items-center justify-center ${
-          currentPage === 0 ? "hidden" : ""
-        }`}
-        aria-label="Previous page"
-      >
-        <IoChevronBackOutline className="w-6 h-6" />
-      </button>
-      <button
-        onClick={nextPage}
-        className={`absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-10 p-4 bg-[#c94986] text-white rounded-lg hover:bg-[#b83d78] transition-colors w-12 h-48 flex items-center justify-center ${
-          currentPage === totalPages - 1 ? "hidden" : ""
-        }`}
-        aria-label="Next page"
-      >
-        <IoChevronForwardOutline className="w-6 h-6" />
-      </button>
-
-      <div className="overflow-hidden">
-        <header className="flex flex-col items-center text-center mb-6 px-2">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-[#d8e2dc] mb-2">
-            Projects
-          </h2>
-          <p className="text-[#c8d0d8] text-sm sm:text-base max-w-2xl leading-relaxed mb-4">
-            Open source tools, apps, and experiments — with a lean toward
-            Kubernetes, automation, and developer workflows.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-            {techFilters.map((filter, index) => (
-              <button
-                key={index}
-                onClick={() => handleFilterChange(filter)}
-                className={`px-2 py-1 sm:px-3 sm:py-1 text-sm sm:text-base rounded-lg transition-colors font-medium ${
-                  activeFilter === filter
-                    ? "bg-[#f686bd] text-[#12151f] shadow-sm"
-                    : "bg-[#2d3142] text-[#f2f6f4] border border-[#5c677a] hover:bg-[#3d4659] hover:border-[#6d7a90]"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </header>
-
-        <div
-          className="flex transition-all duration-700 ease-in-out w-full"
-          style={inlineStyle}
-          nonce={nonce}
-        >
-          {visiblePages.map((pageProjects, pageIndex) => (
-            <div key={pageIndex} className="w-full shrink-0">
-              {pageProjects && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-2 sm:px-4">
-                  {pageProjects.map((project, index) => (
-                    <ProjectCard key={`${pageIndex}-${index}`} {...project} />
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex justify-center gap-1 sm:gap-3 md:visible invisible mt-4">
-        {Array.from({ length: totalPages }).map((_, index) => (
+    <div className="relative w-full max-w-full">
+      <SectionHeader
+        index="02 / Work"
+        title="Projects"
+        description="Open source tools, apps, and experiments — with a lean toward Kubernetes, automation, and developer workflows."
+      />
+      <div className="flex flex-wrap gap-2 mb-8">
+        {techFilters.map((filter, index) => (
           <button
             key={index}
-            onClick={() => handlePageClick(index)}
-            className={`w-8 h-8 sm:w-4 sm:h-4 rounded-full transition-colors flex items-center justify-center ${
-              currentPage === index ? "bg-[#d8e2dc]" : "bg-[#4f5d75]"
+            onClick={() => handleFilterChange(filter)}
+            className={`px-3 py-1.5 text-sm rounded-full transition-colors font-medium ${
+              activeFilter === filter
+                ? "bg-accent text-canvas"
+                : "bg-surface text-ink border border-line hover:border-accent/40"
             }`}
-            aria-label={`Go to page ${index + 1}`}
           >
-            <span
-              className={`w-2 h-2 sm:w-2 sm:h-2 rounded-full ${
-                currentPage === index ? "bg-[#2d3142]" : "bg-[#c8d0d8]"
-              }`}
-            />
+            {filter}
           </button>
         ))}
+      </div>
+
+      <div
+        key={`${activeFilter}-${safePage}`}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 fade-in-left"
+      >
+        {pageProjects.map((project, index) => (
+          <ProjectCard key={`${project.title}-${index}`} {...project} />
+        ))}
+      </div>
+
+      <div className="flex justify-center items-center gap-4 mt-8">
+        <button
+          onClick={prevPage}
+          disabled={safePage === 0}
+          className="w-10 h-10 flex items-center justify-center rounded-full border border-line bg-surface text-ink hover:border-accent/50 hover:text-accent transition-colors disabled:opacity-30 disabled:pointer-events-none"
+          aria-label="Previous page"
+        >
+          <IoChevronBackOutline className="w-5 h-5" />
+        </button>
+        <div className="flex justify-center gap-2">
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageClick(index)}
+              className={`h-2 rounded-full transition-all ${
+                safePage === index
+                  ? "w-6 bg-accent"
+                  : "w-2 bg-line hover:bg-muted"
+              }`}
+              aria-label={`Go to page ${index + 1}`}
+            />
+          ))}
+        </div>
+        <button
+          onClick={nextPage}
+          disabled={safePage === totalPages - 1}
+          className="w-10 h-10 flex items-center justify-center rounded-full border border-line bg-surface text-ink hover:border-accent/50 hover:text-accent transition-colors disabled:opacity-30 disabled:pointer-events-none"
+          aria-label="Next page"
+        >
+          <IoChevronForwardOutline className="w-5 h-5" />
+        </button>
       </div>
     </div>
   );

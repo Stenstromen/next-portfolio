@@ -28,23 +28,23 @@ export default function ProjectCard({
 }: ProjectCardProps) {
 
   return (
-    <div className="group relative bg-[#2d3142] rounded-lg p-3 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col">
-      <div className="aspect-square w-full overflow-hidden rounded-lg mb-4">
-        <a href={link} target="_blank" rel="noreferrer" className="block">
+    <div className="group relative bg-surface rounded-xl border border-line p-3.5 transition-colors duration-300 hover:border-accent/35 h-full flex flex-col">
+      <div className="aspect-square w-full overflow-hidden rounded-lg mb-4 border border-line/80 bg-canvas">
+        <a href={link} target="_blank" rel="noreferrer" className="block h-full">
           <img
             src={typeof image === "string" ? image : image.src}
             alt={title}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             width={300}
             height={300}
           />
         </a>
       </div>
 
-      <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-      <p className="text-sm text-[#eceff1] mb-4 grow leading-relaxed">
+      <h3 className="text-lg font-semibold text-ink mb-2 tracking-tight">{title}</h3>
+      <p className="text-sm text-muted mb-4 grow leading-relaxed">
         {description}
       </p>
 
@@ -59,7 +59,7 @@ export default function ProjectCard({
           href={link}
           target="_blank"
           rel="noreferrer"
-          className="text-base font-medium text-[#f686bd] hover:text-[#ffb3d9] transition-colors underline-offset-4 hover:underline"
+          className="text-sm font-medium text-accent hover:text-ink transition-colors underline-offset-4 hover:underline"
           aria-label={`Open live demo or site for ${title}`}
         >
           Demo
@@ -70,7 +70,7 @@ export default function ProjectCard({
             href={github}
             target="_blank"
             rel="noreferrer"
-            className="text-base font-medium text-[#e3e7ea] hover:text-white transition-colors inline-flex items-center gap-1.5"
+            className="text-sm font-medium text-muted hover:text-ink transition-colors inline-flex items-center gap-1.5"
             aria-label={`View source code for ${title} on GitHub`}
           >
             <FaGithub className="w-4 h-4 shrink-0" aria-hidden />
