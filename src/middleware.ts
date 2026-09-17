@@ -45,14 +45,16 @@ export function middleware(request: NextRequest) {
   response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
   const pathname = request.nextUrl.pathname;
   const isOpenPgpKey = pathname.startsWith("/.well-known/openpgpkey/");
+  const isOgImage = pathname === "/og-image" || pathname === "/og-image.png";
   const isPublicAsset =
     isOpenPgpKey ||
+    isOgImage ||
     /\.(?:png|svg|ico|jpe?g|webp|gif|woff2?|txt|xml)$/i.test(pathname);
   response.headers.set(
     "Cross-Origin-Resource-Policy",
     isPublicAsset ? "cross-origin" : "same-origin",
   );
-  if (isOpenPgpKey) {
+  if (isOpenPgpKey || isOgImage) {
     response.headers.set("Access-Control-Allow-Origin", "*");
   }
   if (pathname.startsWith("/.well-known/openpgpkey/hu/")) {

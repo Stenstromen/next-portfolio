@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "Stenstromen",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image",
         width: 1200,
         height: 630,
         alt: "stenstromen — Platform & Kubernetes",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image",
         width: 1200,
         height: 630,
         alt: "stenstromen — Platform & Kubernetes",
