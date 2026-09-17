@@ -1,2 +1,9 @@
 /_next/static/*
   Cache-Control: public,max-age=31536000,immutable
+
+/.well-known/openpgpkey/*
+  Access-Control-Allow-Origin: *
+
+/.well-known/openpgpkey/hu/*
+  Content-Type: application/octet-stream
+  Access-Control-Allow-Origin: *

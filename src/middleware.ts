@@ -43,13 +43,21 @@ export function middleware(request: NextRequest) {
     "accelerometer=(), autoplay=(), bluetooth=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=(), browsing-topics=()",
   );
   response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
-  const isPublicAsset = /\.(?:png|svg|ico|jpe?g|webp|gif|woff2?|txt|xml)$/i.test(
-    request.nextUrl.pathname,
-  );
+  const pathname = request.nextUrl.pathname;
+  const isOpenPgpKey = pathname.startsWith("/.well-known/openpgpkey/");
+  const isPublicAsset =
+    isOpenPgpKey ||
+    /\.(?:png|svg|ico|jpe?g|webp|gif|woff2?|txt|xml)$/i.test(pathname);
   response.headers.set(
     "Cross-Origin-Resource-Policy",
     isPublicAsset ? "cross-origin" : "same-origin",
   );
+  if (isOpenPgpKey) {
+    response.headers.set("Access-Control-Allow-Origin", "*");
+  }
+  if (pathname.startsWith("/.well-known/openpgpkey/hu/")) {
+    response.headers.set("Content-Type", "application/octet-stream");
+  }
   // credentialless keeps GA/Cloudflare beacons loading; require-corp would block them.
   response.headers.set("Cross-Origin-Embedder-Policy", "credentialless");
   response.headers.set("x-nonce", nonce);
