@@ -11,7 +11,7 @@ const OG_IMAGE_HEADERS = {
   "Cross-Origin-Resource-Policy": "cross-origin",
 };
 
-async function loadOgImage(request: Request): Promise<Uint8Array> {
+async function loadOgImage(request: Request): Promise<ArrayBuffer> {
   try {
     const { env } = await getCloudflareContext({ async: true });
     if (env.ASSETS) {
@@ -19,7 +19,7 @@ async function loadOgImage(request: Request): Promise<Uint8Array> {
         new Request(new URL("/og-image.png", request.url)),
       );
       if (asset.ok) {
-        return new Uint8Array(await asset.arrayBuffer());
+        return asset.arrayBuffer();
       }
     }
   } catch {
@@ -28,7 +28,11 @@ async function loadOgImage(request: Request): Promise<Uint8Array> {
 
   const { readFile } = await import("node:fs/promises");
   const { join } = await import("node:path");
-  return readFile(join(process.cwd(), "public/og-image.png"));
+  const file = await readFile(join(process.cwd(), "public/og-image.png"));
+  return file.buffer.slice(
+    file.byteOffset,
+    file.byteOffset + file.byteLength,
+  );
 }
 
 export async function GET(request: Request) {
