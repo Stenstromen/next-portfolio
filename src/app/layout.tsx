@@ -29,26 +29,42 @@ export const metadata: Metadata = {
   description: siteDescription,
   keywords:
     "platform engineer, DevOps, Kubernetes, Linux Foundation, GitOps, Argo, OpenTofu, Terraform, kubectl plugins, Stockholm, open source, Go, Rust, React",
+  authors: [{ name: "Filip Stenström", url: "https://stenstromen.se" }],
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
+    type: "website",
+    locale: "en_US",
     title: "Stenstromen — Platform & Kubernetes",
     description: siteDescription,
     url: "https://stenstromen.se",
     siteName: "Stenstromen",
     images: [
       {
-        url: "/tux-bimi.png",
+        url: "/og-image.png",
         width: 1200,
-        height: 1200,
-        alt: "Tux — Stenstromen BIMI mark",
+        height: 630,
+        alt: "stenstromen — Platform & Kubernetes",
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/tux-bimi.png"],
+    title: "Stenstromen — Platform & Kubernetes",
+    description: siteDescription,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "stenstromen — Platform & Kubernetes",
+      },
+    ],
   },
 };
 

@@ -43,7 +43,13 @@ export function middleware(request: NextRequest) {
     "accelerometer=(), autoplay=(), bluetooth=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=(), browsing-topics=()",
   );
   response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
-  response.headers.set("Cross-Origin-Resource-Policy", "same-origin");
+  const isPublicAsset = /\.(?:png|svg|ico|jpe?g|webp|gif|woff2?|txt|xml)$/i.test(
+    request.nextUrl.pathname,
+  );
+  response.headers.set(
+    "Cross-Origin-Resource-Policy",
+    isPublicAsset ? "cross-origin" : "same-origin",
+  );
   // credentialless keeps GA/Cloudflare beacons loading; require-corp would block them.
   response.headers.set("Cross-Origin-Embedder-Policy", "credentialless");
   response.headers.set("x-nonce", nonce);
