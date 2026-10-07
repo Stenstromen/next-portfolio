@@ -1,5 +1,3 @@
-"use client";
-
 import ScrollToTop from "./ScrollToTop";
 
 const focusAreas = [
@@ -30,10 +28,6 @@ interface FirstPageProps {
 }
 
 export default function FirstPage({ nonce }: FirstPageProps) {
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div
       id="home"
@@ -71,20 +65,18 @@ export default function FirstPage({ nonce }: FirstPageProps) {
               ))}
             </ul>
             <div className="flex flex-wrap gap-3 pt-2">
-              <button
-                type="button"
-                onClick={() => scrollTo("projects")}
+              <a
+                href="#projects"
                 className="inline-flex items-center min-h-11 rounded-full bg-accent px-5 text-sm font-semibold text-canvas hover:bg-accent/90 transition-colors"
               >
                 View projects
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollTo("contact")}
+              </a>
+              <a
+                href="#contact"
                 className="inline-flex items-center min-h-11 rounded-full border border-line bg-transparent px-5 text-sm font-semibold text-ink hover:border-accent/50 hover:text-accent transition-colors"
               >
                 Get in touch
-              </button>
+              </a>
             </div>
           </div>
 

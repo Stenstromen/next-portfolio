@@ -73,9 +73,7 @@ export interface Project {
   github?: string;
   badges: Array<{
     name: string;
-    src: string;
-    width?: string;
-    height?: string;
+    label: string;
   }>;
 }
 

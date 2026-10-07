@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: "/:path*",
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|svg|ico|jpe?g|webp|gif|woff2?|txt|xml)$).*)",
+  ],
 };
 
 export function middleware(request: NextRequest) {

@@ -95,6 +95,7 @@ export default function Achievements({
                       height={192}
                       loading="lazy"
                       decoding="async"
+                      fetchPriority="low"
                       className="object-contain mb-4 w-40 h-40"
                     />
                     <p className="text-sm font-medium text-ink leading-snug line-clamp-2 mb-1">

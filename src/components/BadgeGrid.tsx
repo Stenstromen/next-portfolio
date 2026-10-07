@@ -44,13 +44,7 @@ export default function BadgeGrid({ nonce }: BadgeGridProps) {
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
         {badgesToShow.map(([key, badge]) => (
           <div key={key} className="flex justify-start items-center">
-            <Badge
-              name={badge.name}
-              src={badge.src}
-              width={badge.width}
-              height={badge.height}
-              nonce={nonce}
-            />
+            <Badge name={badge.name} label={badge.label} />
           </div>
         ))}
       </div>

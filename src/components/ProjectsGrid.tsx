@@ -15,7 +15,20 @@ export default async function ProjectsGrid() {
     <div id="projects" className="w-full py-20 sm:py-24 bg-canvas">
       <div className="w-full px-4 sm:px-6 max-w-6xl mx-auto">
         <ProjectCarousel
-          projects={ProjectList}
+          projects={ProjectList.map((project) => ({
+            title: project.title,
+            description: project.description,
+            link: project.link,
+            github: project.github,
+            image:
+              typeof project.image === "string"
+                ? project.image
+                : project.image.src,
+            badges: project.badges.map((badge) => ({
+              name: badge.name,
+              label: badge.label,
+            })),
+          }))}
           itemsPerRow={4}
           rows={2}
           nonce={nonce || undefined}

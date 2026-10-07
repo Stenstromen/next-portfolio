@@ -26,6 +26,7 @@
 
 html {
   scroll-padding-top: 5.5rem;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -119,11 +120,9 @@ body {
 
 @keyframes fadeInUp {
   from {
-    opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -137,7 +136,18 @@ body {
   animation-delay: 0.12s;
 }
 
+@media (max-width: 640px) {
+  .fade-in-left,
+  .fade-in-right {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .fade-in-left,
   .fade-in-right,
   .achievements-marquee-track {

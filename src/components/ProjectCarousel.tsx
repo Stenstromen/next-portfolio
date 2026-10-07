@@ -19,7 +19,7 @@ export default function ProjectCarousel({
   rows = 2,
 }: ProjectCarouselProps) {
   const [currentPage, setCurrentPage] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
   const [autoPlay, setAutoPlay] = useState(true);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
   const [activeFilter, setActiveFilter] = useState("All");
@@ -71,7 +71,7 @@ export default function ProjectCarousel({
   }, [currentPage, totalPages]);
 
   useEffect(() => {
-    if (!autoPlay || totalPages <= 1) return;
+    if (!autoPlay || isMobile || totalPages <= 1) return;
 
     const switchPage = () => {
       setCurrentPage((prev) => (prev + 1) % totalPages);
@@ -84,7 +84,7 @@ export default function ProjectCarousel({
         clearTimeout(autoPlayTimeoutRef.current);
       }
     };
-  }, [currentPage, totalPages, autoPlay]);
+  }, [currentPage, totalPages, autoPlay, isMobile]);
   const techFilters = ["All", "Go", "Rust", "React", "Kubernetes"];
 
   const handleFilterChange = (filter: string) => {

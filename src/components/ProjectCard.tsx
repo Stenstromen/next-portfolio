@@ -12,9 +12,7 @@ interface ProjectCardProps {
   github?: string;
   badges: Array<{
     name: string;
-    src: string;
-    width?: string;
-    height?: string;
+    label: string;
   }>;
 }
 
@@ -43,6 +41,7 @@ export default function ProjectCard({
             alt={title}
             loading="lazy"
             decoding="async"
+            fetchPriority="low"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             width={300}
             height={300}
@@ -57,7 +56,7 @@ export default function ProjectCard({
 
       <div className="flex flex-wrap gap-1.5 mb-4">
         {badges.map((badge, index) => (
-          <Badge key={index} name={badge.name} src={badge.src} />
+          <Badge key={`${badge.name}-${index}`} name={badge.name} label={badge.label} />
         ))}
       </div>
 
