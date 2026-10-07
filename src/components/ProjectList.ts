@@ -4,12 +4,14 @@ import FlareGHStats from "../img/flareghstats.webp";
 import bf2042ico from "../img/bf2042ico.webp";
 import bright from "../img/bright.webp";
 import cask from "../img/cask.webp";
+import cloudshort from "../img/cloudshort.webp";
 import detblevingencd from "../img/detblevingencd.webp";
 import dockerctx from "../img/dockerctx.webp";
 import doggate from "../img/doggate.webp";
 import doh from "../img/doh.webp";
 import pusheencat from "../img/pusheen-cat.webp";
 import flowerapi from "../img/flowerapi.webp";
+import gearbox from "../img/gearbox.webp";
 import gologo from "../img/gologo.webp";
 import gomyip from "../img/gomyip.webp";
 import grumpypgp from "../img/grumpypgp.webp";
@@ -27,6 +29,7 @@ import pwgen from "../img/pwgen.webp";
 import readthenburn from "../img/readthenburn.webp";
 import registryport from "../img/registryport.webp";
 import snapnote from "../img/snapnote.webp";
+import switchboard from "../img/switchboard.webp";
 import vault from "../img/vault.webp";
 import linkvigil from "../img/linkvigil.webp";
 import lotemp from "../img/lotemp.webp";
@@ -78,20 +81,28 @@ export interface Project {
 
 const ProjectList: Project[] = [
   {
-    image: dns,
-    title: "AXFR.se",
-    description: "AXFR.se, view .se, .nu and other TLD statistics.",
-    link: "https://axfr.se",
-    github: "https://github.com/Stenstromen/axfr-frontend",
-    badges: [REACTJS, JS, CLOUDFLARE, GO, MARIADB, KUBERNETES],
+    image: switchboard,
+    title: "Switchboard",
+    description: "Native macOS SSH tunnel manager for local, remote and dynamic port forwarding with OpenSSH",
+    link: "https://github.com/Stenstromen/switchboard",
+    github: "https://github.com/Stenstromen/switchboard",
+    badges: [TS, GO],
   },
   {
-    image: snapnote,
-    title: "Snapnote",
-    description: "Open source note taking application.",
-    link: "https://snapnote.online",
-    github: "https://github.com/Stenstromen/snapnote",
-    badges: [REACTJS, TS, GO, MARIADB, KUBERNETES],
+    image: gearbox,
+    title: "Gearbox",
+    description: "Native macOS client for a remote Transmission daemon. Watch, add, and control torrents over JSON-RPC",
+    link: "https://github.com/Stenstromen/gearbox",
+    github: "https://github.com/Stenstromen/gearbox",
+    badges: [TS, GO],
+  },
+  {
+    image: cloudshort,
+    title: "Cloudshort",
+    description: "Tiny URL shortener on Cloudflare Workers",
+    link: "https://github.com/Stenstromen/cloudshort",
+    github: "https://github.com/Stenstromen/cloudshort",
+    badges: [TS, CLOUDFLARE],
   },
   {
     image: rustex,
@@ -144,6 +155,22 @@ const ProjectList: Project[] = [
     link: "https://github.com/Stenstromen/outlinewikibackup",
     github: "https://github.com/Stenstromen/outlinewikibackup",
     badges: [GO, DOCKER],
+  },
+  {
+    image: dns,
+    title: "AXFR.se",
+    description: "AXFR.se, view .se, .nu and other TLD statistics.",
+    link: "https://axfr.se",
+    github: "https://github.com/Stenstromen/axfr-frontend",
+    badges: [REACTJS, JS, CLOUDFLARE, GO, MARIADB, KUBERNETES],
+  },
+  {
+    image: snapnote,
+    title: "Snapnote",
+    description: "Open source note taking application.",
+    link: "https://snapnote.online",
+    github: "https://github.com/Stenstromen/snapnote",
+    badges: [REACTJS, TS, GO, MARIADB, KUBERNETES],
   },
   {
     image: nyancat,
