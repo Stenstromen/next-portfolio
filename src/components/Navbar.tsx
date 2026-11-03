@@ -26,7 +26,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:px-6">
         <Link
           href="/"
-          className="font-mono text-sm sm:text-base tracking-tight text-ink hover:text-accent transition-colors shrink-0 inline-flex items-center min-h-9 sm:min-h-11"
+          className="font-mono text-sm sm:text-base tracking-tight text-ink hover:text-honey transition-colors shrink-0 inline-flex items-center min-h-9 sm:min-h-11"
         >
           stenstromen
         </Link>
