@@ -9,8 +9,7 @@ export default function EasterEgg() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div>
-      <template>{EGG}</template>
+    <div data-egg={EGG}>
       <p className="section-kicker">
         Platform engineer{" "}
         <button

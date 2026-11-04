@@ -82,8 +82,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script nonce={nonce || undefined} />
-        <style nonce={nonce || undefined} />
+        <script nonce={nonce || undefined} suppressHydrationWarning />
+        <style nonce={nonce || undefined} suppressHydrationWarning />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-canvas text-ink min-h-svh flex flex-col`}
