@@ -55,13 +55,13 @@ describe("Footer", () => {
 
     // Test Status Page link
     const statusLink = container.querySelector(
-      'a[href="https://stenstromen.statuspage.io/"]'
+      'a[href="https://uptime.stenstromen.se/"]'
     );
     expect(statusLink).toBeTruthy();
     expect(statusLink).toHaveAttribute("target", "_blank");
     expect(statusLink).toHaveAttribute("rel", "noreferrer");
     expect(statusLink).not.toHaveAttribute("aria-label");
-    expect(statusLink?.textContent).toContain("Atlassian Statuspage Uptime");
+    expect(statusLink?.textContent).toContain("Stenstromen Services Uptime");
   });
 
   it("renders with correct layout classes", () => {

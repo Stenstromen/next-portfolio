@@ -46,8 +46,8 @@ const footerLinks: FooterLink[] = [
   },
   {
     icon: <FaCircle className="w-6 h-6" aria-hidden />,
-    text: "Atlassian Statuspage Uptime",
-    href: "https://stenstromen.statuspage.io/",
+    text: "Stenstromen Services Uptime",
+    href: "https://uptime.stenstromen.se/",
   }
 ];
 
